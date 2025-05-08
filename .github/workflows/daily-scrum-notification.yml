@@ -76,5 +76,5 @@ jobs:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }} # GitHub Secrets에서 웹훅 URL 가져오기
         run: |
           curl -X POST -H "Content-Type: application/json" \
-          -d '$JSON_PAYLOAD' \
+          -d "$JSON_PAYLOAD" \
           "${DISCORD_WEBHOOK_URL}"
