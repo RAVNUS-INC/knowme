@@ -19,17 +19,10 @@ jobs:
       - name: Checkout repository # 코드 체크아웃
         uses: actions/checkout@v4
 
-      - name: Get GitHub Token for gh CLI # GitHub CLI 사용을 위한 토큰 설정
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          # gh CLI 설치
-          sudo apt-get install gh jq -y
-          # GitHub CLI 인증 (토큰 사용)
-          echo $GITHUB_TOKEN | gh auth login --with-token
-
       - name: Fetch Open Issues # 열려있는 이슈 목록 가져오기 (최대 30개)
         id: issues
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           # gh cli를 사용하여 json 형태로 이슈 목록 가져오기
           issue_list=$(gh issue list --state open --limit 30 --json number,title,url)
@@ -46,6 +39,8 @@ jobs:
 
       - name: Fetch Open PRs # 열려있는 PR 목록 가져오기 (최대 30개)
         id: prs
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           # gh cli를 사용하여 json 형태로 PR 목록 가져오기
           pr_list=$(gh pr list --state open --limit 30 --json number,title,url)
