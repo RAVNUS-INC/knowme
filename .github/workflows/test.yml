@@ -71,10 +71,10 @@ jobs:
 
           # MESSAGE 문자열을 구성할 때, 줄바꿈이 필요한 곳에 리터럴 '\\n'을 사용합니다.
           # 이렇게 해야 MESSAGE 변수 자체가 단일 라인 문자열이 되고, jq가 이를 올바르게 처리할 수 있습니다.
-          MESSAGE="## ☀️ ${TODAY} 데일리 스크럼 안내 ☀️\\n\\n"
-          MESSAGE+="**⏰ 오늘 오전 데일리 스크럼 시간입니다!**\\n\\n"
-          MESSAGE+="**현재 열려있는 이슈:**\\n${issues_escaped_for_json}\\n\\n"
-          MESSAGE+="**현재 열려있는 Pull Requests:**\\n${prs_escaped_for_json}\\n\\n"
+          MESSAGE="## ☀️ ${TODAY} 데일리 스크럼 안내 ☀️\n\n"
+          MESSAGE+="**⏰ 오늘 오전 데일리 스크럼 시간입니다!**\n\n"
+          MESSAGE+="**현재 열려있는 이슈:**\n${issues_escaped_for_json}\n\n"
+          MESSAGE+="**현재 열려있는 Pull Requests:**\n${prs_escaped_for_json}\n\n"
           MESSAGE+="잠시 하던 일을 멈추고 각자 진행 상황과 이슈를 공유해주세요! 😊"
           
           echo "Constructed Message String (with literal \\\\n for jq):"
