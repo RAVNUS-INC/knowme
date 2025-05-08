@@ -1,0 +1,27 @@
+name: Simple Run Workflow
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  run_script:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Print environment information
+        run: |
+          echo "Operating System: $(uname -o)"
+          echo "Current Directory: $(pwd)"
+          echo "List files:"
+          ls -al
+
+      - name: Create a test file
+        run: |
+          echo "Hello, GitHub Actions!" > test.txt
+          cat test.txt
+
+      - name: Display system date
+        run: date
