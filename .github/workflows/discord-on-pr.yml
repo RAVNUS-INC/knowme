@@ -31,6 +31,8 @@ jobs:
           url: ${{ github.event.pull_request.html_url }}
           username: GitHub PR Bot
           avatar_url: https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png
+          nodetail: true
+          nofooter: true
           
       - name: Discord Notification for PR Merge
         if: github.event.pull_request.merged == true
