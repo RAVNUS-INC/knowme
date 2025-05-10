@@ -4,7 +4,7 @@ on:
   schedule:
     # 한국 시간 오전 10시에 실행 (UTC 기준 새벽 1시)
     # 분 시 일 월 요일
-    - cron: '0 1 * * *'
+    - cron: "0 1 * * *"
   # 수동 실행을 위한 옵션 (Actions 탭에서 직접 실행 가능)
   workflow_dispatch:
 
@@ -55,29 +55,27 @@ jobs:
           echo "$formatted_prs" >> $GITHUB_ENV
           echo "EOF" >> $GITHUB_ENV
 
-      - name: Construct Discord Message # Discord 메시지 조합
-        id: message
-        run: |
-          # 날짜 포맷 (YYYY-MM-DD)
-          TODAY=$(date +'%Y-%m-%d')
-          # 최종 메시지 조합 (Markdown 형식 활용) 및 JSON 페이로드 생성
-          # jq를 사용하여 메시지 문자열을 구성하고, jq 내에서 \n을 사용하여 개행
-          # jq는 이를 JSON 문자열에서 올바른 \n으로 이스케이프함
-          JSON_PAYLOAD=$(jq -nc \
-            --arg today "$TODAY" \
-            --arg issues "$ISSUE_LIST" \
-            --arg prs "$PR_LIST" \
-            '{
-              "content": "## ☀️ \($today) 데일리 스크럼 안내 ☀️\n\n**⏰ 오늘 오전 데일리 스크럼 시간입니다!**\n\n**현재 열려있는 이슈:**\n\($issues)\n\n**현재 열려있는 Pull Requests:**\n\($prs)\n\n잠시 하던 일을 멈추고 각자 진행 상황과 이슈를 공유해주세요! 😊"
-            }'
-          )
-          # 생성된 JSON 페이로드를 환경 변수에 설정
-          echo "JSON_PAYLOAD=$JSON_PAYLOAD" >> $GITHUB_ENV
+      - name: Get Current Date
+        id: date
+        run: echo "TODAY=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
 
       - name: Send Notification to Discord # Discord로 알림 보내기
-        env:
-          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }} # GitHub Secrets에서 웹훅 URL 가져오기
-        run: |
-          curl -X POST -H "Content-Type: application/json" \
-          -d "$JSON_PAYLOAD" \
-          "${DISCORD_WEBHOOK_URL}"
+        uses: sarisia/actions-status-discord@v1
+        with:
+          webhook: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          title: "☀️ ${{ env.TODAY }} 데일리 스크럼 안내 ☀️"
+          description: |
+            **⏰ 오늘 오전 데일리 스크럼 시간입니다!**
+
+            **현재 열려있는 이슈:**
+            ${{ env.ISSUE_LIST }}
+
+            **현재 열려있는 Pull Requests:**
+            ${{ env.PR_LIST }}
+
+            잠시 하던 일을 멈추고 각자 진행 상황과 이슈를 공유해주세요! 😊
+          color: 0x5865F2
+          username: Daily Scrum Bot - Frontend
+          avatar_url: https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png
+          nodetail: true
+          nofooter: true
