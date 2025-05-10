@@ -13,6 +13,34 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      - name: Extract PR Content
+        id: extract_content
+        if: github.event.pull_request
+        run: |
+          PR_BODY="${{ github.event.pull_request.body }}"
+          
+          # PR 설명 추출
+          PR_DESCRIPTION=$(echo "$PR_BODY" | grep -A 5 "## 📝 PR 설명" | grep -v "## 📝 PR 설명" | grep -v "<!--" | grep -v "-->" | grep -v "^$" | head -n 3)
+          
+          # 주요 변경 사항 추출
+          MAJOR_CHANGES=$(echo "$PR_BODY" | grep -A 10 "## 🛠 주요 변경 사항" | grep -v "## 🛠 주요 변경 사항" | grep -v "<!--" | grep -v "-->" | grep -v "^$" | head -n 5)
+          
+          # 값이 비어있으면 기본값 설정
+          if [ -z "$PR_DESCRIPTION" ]; then PR_DESCRIPTION="설명 없음"; fi
+          if [ -z "$MAJOR_CHANGES" ]; then MAJOR_CHANGES="변경 사항 없음"; fi
+          
+          # 줄바꿈 처리 (GitHub Actions에서 여러 줄 값을 환경 변수로 설정할 때 필요)
+          PR_DESCRIPTION="${PR_DESCRIPTION//'%'/'%25'}"
+          PR_DESCRIPTION="${PR_DESCRIPTION//$'\n'/'%0A'}"
+          PR_DESCRIPTION="${PR_DESCRIPTION//$'\r'/'%0D'}"
+          
+          MAJOR_CHANGES="${MAJOR_CHANGES//'%'/'%25'}"
+          MAJOR_CHANGES="${MAJOR_CHANGES//$'\n'/'%0A'}"
+          MAJOR_CHANGES="${MAJOR_CHANGES//$'\r'/'%0D'}"
+          
+          echo "pr_description=$PR_DESCRIPTION" >> $GITHUB_OUTPUT
+          echo "major_changes=$MAJOR_CHANGES" >> $GITHUB_OUTPUT
+
       - name: Discord Notification for PR Update
         if: github.event.pull_request.merged != true
         uses: sarisia/actions-status-discord@v1
@@ -23,10 +51,12 @@ jobs:
             **PR 제목:** ${{ github.event.pull_request.title }}
             **작성자:** ${{ github.event.pull_request.user.login }}
             **브랜치:** ${{ github.event.pull_request.head.ref }} → ${{ github.event.pull_request.base.ref }}
-            **설명:** 
-            ```
-            ${{ github.event.pull_request.body || '설명 없음' }}
-            ```
+            
+            **📝 PR 설명:** 
+            ${{ steps.extract_content.outputs.pr_description }}
+            
+            **🛠 주요 변경 사항:** 
+            ${{ steps.extract_content.outputs.major_changes }}
           color: 0x5865F2
           url: ${{ github.event.pull_request.html_url }}
           username: GitHub PR Bot
