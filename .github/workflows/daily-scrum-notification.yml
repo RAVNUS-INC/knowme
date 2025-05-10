@@ -75,5 +75,7 @@ jobs:
 
             잠시 하던 일을 멈추고 각자 진행 상황과 이슈를 공유해주세요! 😊
           color: 0x5865F2
-          username: Daily Scrum Bot
+          username: Daily Scrum Bot - Frontend
           avatar_url: https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png
+          nodetail: true
+          nofooter: true

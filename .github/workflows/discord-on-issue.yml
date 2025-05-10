@@ -3,7 +3,7 @@ name: Discord 이슈 알림
 on:
   issues:
     types: [opened]
-    
+
   workflow_dispatch:
 
 jobs:
@@ -23,5 +23,7 @@ jobs:
             🔖 **제목:** ${{ github.event.issue.title }}
           color: 0xFF5733
           url: ${{ github.event.issue.html_url }}
-          username: GitHub Issue Bot
+          username: GitHub Issue Bot - Frontend
           avatar_url: https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png
+          nodetail: true
+          nofooter: true

@@ -45,5 +45,7 @@ jobs:
             **병합자:** ${{ github.actor }}
           color: 0x2ECC71
           url: ${{ github.event.pull_request.html_url }}
-          username: GitHub PR Bot
+          username: GitHub PR Bot - Frontend
           avatar_url: https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png
+          nodetail: true
+          nofooter: true
