@@ -214,7 +214,7 @@ class _SignupThirdPageState extends State<SignupThirdPage> {
               borderSide: const BorderSide(color: Colors.blue),
             ),
             contentPadding:
-            const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
+                const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
           ),
           keyboardType: TextInputType.text,
           textInputAction: TextInputAction.next,
@@ -274,7 +274,7 @@ class _SignupThirdPageState extends State<SignupThirdPage> {
                     borderSide: const BorderSide(color: Colors.blue),
                   ),
                   contentPadding:
-                  const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
+                      const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
                 ),
                 keyboardType: TextInputType.emailAddress,
                 textInputAction: TextInputAction.next,
@@ -314,7 +314,8 @@ class _SignupThirdPageState extends State<SignupThirdPage> {
                         if (selectedDomain != '직접입력') {
                           controller.updateEmailDomain(selectedDomain);
                         } else {
-                          controller.updateEmailDomain(controller.emailDomainController.text);
+                          controller.updateEmailDomain(
+                              controller.emailDomainController.text);
                         }
                       });
                     },
@@ -323,7 +324,7 @@ class _SignupThirdPageState extends State<SignupThirdPage> {
                       return DropdownMenuItem<String>(
                         value: value,
                         child:
-                        Text(value, style: const TextStyle(fontSize: 14)),
+                            Text(value, style: const TextStyle(fontSize: 14)),
                       );
                     }).toList(),
                   ),
@@ -353,7 +354,7 @@ class _SignupThirdPageState extends State<SignupThirdPage> {
                   borderSide: const BorderSide(color: Colors.blue),
                 ),
                 contentPadding:
-                const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
+                    const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
               ),
               keyboardType: TextInputType.text,
               textInputAction: TextInputAction.next,
@@ -418,7 +419,7 @@ class _SignupThirdPageState extends State<SignupThirdPage> {
                     borderSide: const BorderSide(color: Colors.blue),
                   ),
                   contentPadding:
-                  const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
+                      const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
                 ),
                 textInputAction: TextInputAction.next,
                 enableInteractiveSelection: true,
@@ -442,7 +443,7 @@ class _SignupThirdPageState extends State<SignupThirdPage> {
                     borderSide: const BorderSide(color: Colors.blue),
                   ),
                   contentPadding:
-                  const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
+                      const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
                 ),
                 textInputAction: TextInputAction.next,
                 enableInteractiveSelection: true,
@@ -541,7 +542,7 @@ class _SignupThirdPageState extends State<SignupThirdPage> {
                   style: TextStyle(
                     fontSize: 14,
                     color:
-                    selectedPosition == '전체' ? Colors.grey : Colors.black,
+                        selectedPosition == '전체' ? Colors.grey : Colors.black,
                   ),
                 ),
                 const Icon(Icons.keyboard_arrow_down, size: 24),
@@ -584,7 +585,7 @@ class _SignupThirdPageState extends State<SignupThirdPage> {
                 // 상단 헤더
                 Padding(
                   padding:
-                  const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                      const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [

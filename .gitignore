@@ -16,10 +16,8 @@ migrate_working_dir/
 *.iws
 .idea/
 
-# The .vscode folder contains launch configuration and tasks you configure in
-# VS Code which you may wish to be included in version control, so this line
-# is commented out by default.
-#.vscode/
+# VS Code related
+.vscode/
 
 # Flutter/Dart/Pub related
 **/doc/api/
@@ -29,7 +27,7 @@ migrate_working_dir/
 .flutter-plugins-dependencies
 .pub-cache/
 .pub/
-/build/
+build/
 
 # Symbolication related
 app.*.symbols
@@ -42,21 +40,14 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 
-# 제외할 폴더/파일 명시 (커밋하고 싶지 않은 것들)
-
-.dart_tool/
-.android/
-.idea/
-build/
-ios/
-linux/
-macos/
-temp-backup/
-web/
-windows/
-
+# 프로젝트별 무시 항목
+/android/
+/ios/
+/linux/
+/macos/
+/web/
+/windows/
 .metadata
 analysis_options.yaml
 pubspec.lock
 README.md
-study.iml
