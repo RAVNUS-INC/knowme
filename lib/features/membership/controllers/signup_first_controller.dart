@@ -1,8 +1,10 @@
 import 'package:get/get.dart';
 import '../models/signup_model.dart';
+import 'package:logger/logger.dart';
 
 class SignupFirstController extends GetxController {
   final SignupModel signupModel = SignupModel();
+  final logger = Logger();
 
   // Method to update agreement to all terms
   void updateAllTerms(bool? value) {
@@ -44,8 +46,9 @@ class SignupFirstController extends GetxController {
   // Method to handle navigation to next screen
   void navigateToSecondPage() {
     if (signupModel.isFirstNextButtonEnabled) {
-      Get.toNamed('/signup/second',
-          arguments: {'marketingConsent': signupModel.agreeToMarketingInfo});
+      Get.toNamed('/signup/second', arguments: {
+        'marketingConsent': signupModel.agreeToMarketingInfo
+      });
     }
   }
 
@@ -53,15 +56,15 @@ class SignupFirstController extends GetxController {
   void viewTerms(String termType) {
     switch (termType) {
       case 'service':
-        print('서비스 이용약관 보기');
+        logger.d('서비스 이용약관 보기');
         // Navigate to service terms page
         break;
       case 'privacy':
-        print('개인정보 처리방침 보기');
+        logger.d('개인정보 처리방침 보기');
         // Navigate to privacy policy page
         break;
       case 'marketing':
-        print('마케팅 정보 수신 약관 보기');
+        logger.d('마케팅 정보 수신 약관 보기');
         // Navigate to marketing terms page
         break;
     }

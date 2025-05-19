@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../models/signup_model.dart';
+import 'package:logger/logger.dart';
 
 class SignupSecondController extends GetxController {
   final SignupModel signupModel = SignupModel();
+  final logger = Logger();
 
   // Text controllers
   final TextEditingController idController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  final TextEditingController passwordConfirmController =
-      TextEditingController();
+  final TextEditingController passwordConfirmController = TextEditingController();
   final TextEditingController phoneController = TextEditingController();
-  final TextEditingController verificationCodeController =
-      TextEditingController();
+  final TextEditingController verificationCodeController = TextEditingController();
 
   @override
   void onInit() {
@@ -24,8 +24,7 @@ class SignupSecondController extends GetxController {
 
     // Get marketing consent from previous page
     if (Get.arguments != null && Get.arguments is Map) {
-      signupModel.agreeToMarketingInfo =
-          Get.arguments['marketingConsent'] ?? false;
+      signupModel.agreeToMarketingInfo = Get.arguments['marketingConsent'] ?? false;
     }
 
     // Add listeners to text controllers
@@ -49,9 +48,9 @@ class SignupSecondController extends GetxController {
   // Validate ID
   void _validateId() {
     final id = idController.text;
-    final hasMinLength = id.length >= 6; // Minimum 6 characters
-    final hasLetters = id.contains(RegExp(r'[A-Za-z]')); // Contains letters
-    final hasDigits = id.contains(RegExp(r'[0-9]')); // Contains digits
+    final hasMinLength = id.length >= 6;  // Minimum 6 characters
+    final hasLetters = id.contains(RegExp(r'[A-Za-z]'));  // Contains letters
+    final hasDigits = id.contains(RegExp(r'[0-9]'));  // Contains digits
 
     signupModel.userId = id;
     signupModel.isIdValid = hasMinLength && hasLetters && hasDigits;
@@ -110,7 +109,7 @@ class SignupSecondController extends GetxController {
   // Send verification code
   void sendVerificationCode() {
     if (signupModel.isPhoneValid) {
-      print('인증번호 발송');
+      logger.d('인증번호 발송');
       // Logic to send verification code
     }
   }

@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import '../controllers/signup_first_controller.dart';
 
 class SignupFirstPage extends StatefulWidget {
-  const SignupFirstPage({Key? key}) : super(key: key);
+  const SignupFirstPage({super.key});
 
   @override
   State<SignupFirstPage> createState() => _SignupFirstPageState();

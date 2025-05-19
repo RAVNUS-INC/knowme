@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../models/signup_model.dart';
+import 'package:logger/logger.dart';
 
 class SignupThirdController extends GetxController {
   final SignupModel model;
+  final logger = Logger();
 
   SignupThirdController({required this.model});
 
@@ -70,8 +72,7 @@ class SignupThirdController extends GetxController {
 
   // 학력 정보 유효성 검사
   void _validateEducation() {
-    model.isEducationValid =
-        model.schoolName.isNotEmpty && model.major.isNotEmpty;
+    model.isEducationValid = model.schoolName.isNotEmpty && model.major.isNotEmpty;
   }
 
   // 희망 직종 업데이트 및 유효성 검사
@@ -95,8 +96,7 @@ class SignupThirdController extends GetxController {
 
   // 이메일 형식 유효성 검사
   bool _isValidEmail() {
-    final emailRegex =
-        RegExp(r'^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$');
+    final emailRegex = RegExp(r'^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$');
     final fullEmail = '${model.emailPrefix}@${model.emailDomain}';
     return emailRegex.hasMatch(fullEmail);
   }
@@ -107,7 +107,7 @@ class SignupThirdController extends GetxController {
       try {
         // API 호출 또는 데이터베이스 저장 로직
         final userData = model.toJson();
-        print('회원가입 데이터: $userData');
+        logger.d('회원가입 데이터: $userData');
 
         // 성공 메시지 표시
         Get.snackbar(

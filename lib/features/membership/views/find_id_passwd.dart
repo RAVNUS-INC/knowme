@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import '../controllers/find_id_passwd_controller.dart';
 
 class FindIdPasswd extends StatefulWidget {
-  const FindIdPasswd({Key? key}) : super(key: key);
+  const FindIdPasswd({super.key});
 
   @override
   State<FindIdPasswd> createState() => _FindIdPasswdState();

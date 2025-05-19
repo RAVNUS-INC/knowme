@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import '../controllers/signup_third_controller.dart';
 import '../models/signup_model.dart';
 
 class SignupThirdPage extends StatefulWidget {
-  const SignupThirdPage({Key? key}) : super(key: key);
+  const SignupThirdPage({super.key});
 
   @override
   State<SignupThirdPage> createState() => _SignupThirdPageState();

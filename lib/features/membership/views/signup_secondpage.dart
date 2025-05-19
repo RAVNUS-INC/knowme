@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import '../controllers/signup_second_controller.dart';
 
 class SignupSecondPage extends StatelessWidget {
-  const SignupSecondPage({Key? key}) : super(key: key);
+  const SignupSecondPage({super.key});
 
   @override
   Widget build(BuildContext context) {
