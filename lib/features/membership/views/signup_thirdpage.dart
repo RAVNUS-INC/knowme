@@ -26,7 +26,7 @@ class _SignupThirdPageState extends State<SignupThirdPage> {
   // 선택 상태 변수
   String selectedDomain = SignupModel.emailDomains[0]; // '직접입력'
   String selectedGrade = SignupModel.grades[0]; // '1학년'
-  String selectedPosition = SignupModel.positions[0]; // '선택'
+  String selectedPosition = SignupModel.positions[0]; // '전체'
   bool _isCurrentlyEnrolled = false;
 
   @override
@@ -500,7 +500,7 @@ class _SignupThirdPageState extends State<SignupThirdPage> {
               elevation: 16,
               isExpanded: true,
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-              dropdownColor: Colors.grey[50], // 드롭다운 메뉴 배경색
+              dropdownColor: Colors.white, // 드롭다운 메뉴 배경색
               hint: const Text('학년'),
               onChanged: (String? newValue) {
                 setState(() {
@@ -522,7 +522,7 @@ class _SignupThirdPageState extends State<SignupThirdPage> {
     );
   }
 
-  // 희망직종 선택 위젯
+  // 희망직종 선택 위젯 (바텀 시트 방식)
   Widget _buildDesiredPositionField() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -550,37 +550,119 @@ class _SignupThirdPageState extends State<SignupThirdPage> {
           ),
         ),
         const SizedBox(height: 8),
-        Container(
-          decoration: BoxDecoration(
-            color: Colors.grey[50], // 배경색 변경
-            border: Border.all(color: Colors.grey),
-            borderRadius: BorderRadius.circular(8),
-          ),
-          child: DropdownButtonHideUnderline(
-            child: DropdownButton<String>(
-              value: selectedPosition,
-              icon: const Icon(Icons.keyboard_arrow_down),
-              iconSize: 24,
-              elevation: 16,
-              isExpanded: true,
-              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-              dropdownColor: Colors.grey[50], // 드롭다운 메뉴 배경색
-              onChanged: (String? newValue) {
-                setState(() {
-                  selectedPosition = newValue!;
-                  controller.updateDesiredPosition(selectedPosition);
-                });
-              },
-              items: SignupModel.positions.map<DropdownMenuItem<String>>((String value) {
-                return DropdownMenuItem<String>(
-                  value: value,
-                  child: Text(value, style: const TextStyle(fontSize: 14)),
-                );
-              }).toList(),
+        // 바텀 시트를 열기 위한 버튼 스타일의 컨테이너
+        GestureDetector(
+          onTap: () {
+            // 바텀 시트 열기
+            _showPositionBottomSheet(context);
+          },
+          child: Container(
+            width: double.infinity,
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 13),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              border: Border.all(color: Colors.grey),
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  selectedPosition == '전체' ? '희망직종 선택' : selectedPosition,
+                  style: TextStyle(
+                    fontSize: 14,
+                    color: selectedPosition == '전체' ? Colors.grey : Colors.black,
+                  ),
+                ),
+                const Icon(Icons.keyboard_arrow_down, size: 24),
+              ],
             ),
           ),
         ),
       ],
+    );
+  }
+
+  // 바텀 시트를 표시하는 메서드
+  void _showPositionBottomSheet(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true, // 스크롤 가능하도록 설정
+      backgroundColor: Colors.white,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(15)),
+      ),
+      builder: (BuildContext context) {
+        return DraggableScrollableSheet(
+          initialChildSize: 0.7, // 화면의 70%까지 확장 가능
+          minChildSize: 0.5, // 최소 50%
+          maxChildSize: 0.9, // 최대 90%
+          expand: false,
+          builder: (context, scrollController) {
+            return Column(
+              children: [
+                // 상단 핸들 (드래그 가능한 작대기)
+                Container(
+                  margin: const EdgeInsets.only(top: 10),
+                  width: 40,
+                  height: 4,
+                  decoration: BoxDecoration(
+                    color: Colors.grey[600],
+                    borderRadius: BorderRadius.circular(2),
+                  ),
+                ),
+                // 상단 헤더
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Text(
+                        '희망직종 선택',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      IconButton(
+                        icon: const Icon(Icons.close),
+                        padding: EdgeInsets.zero,
+                        constraints: const BoxConstraints(),
+                        onPressed: () => Navigator.of(context).pop(),
+                      ),
+                    ],
+                  ),
+                ),
+                const Divider(),
+                // 목록 (스크롤 가능)
+                Expanded(
+                  child: ListView.builder(
+                    controller: scrollController,
+                    itemCount: SignupModel.positions.length,
+                    itemBuilder: (context, index) {
+                      final position = SignupModel.positions[index];
+                      return ListTile(
+                        title: Text(position),
+                        onTap: () {
+                          setState(() {
+                            selectedPosition = position;
+                            controller.updateDesiredPosition(position);
+                          });
+                          Navigator.pop(context);
+                        },
+                        // 현재 선택된 항목 표시
+                        trailing: selectedPosition == position
+                            ? const Icon(Icons.check, color: Colors.blue)
+                            : null,
+                      );
+                    },
+                  ),
+                ),
+              ],
+            );
+          },
+        );
+      },
     );
   }
 
@@ -618,6 +700,7 @@ class _SignupThirdPageState extends State<SignupThirdPage> {
     );
   }
 }
+
 Widget _buildDivider() {
   return Container(
     height: 1,

@@ -57,7 +57,7 @@ class LoginController extends GetxController {
 
   void handleForgotPassword() {
     // 아이디/비밀번호 찾기 화면으로 이동
-    Get.toNamed('/forgot-password');
+    Get.toNamed('/find-id-passwd');
   }
 
   void handleSocialLogin(String provider) {
