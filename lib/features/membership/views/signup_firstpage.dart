@@ -86,94 +86,98 @@ class _SignupFirstPageState extends State<SignupFirstPage> {
           Expanded(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: GetBuilder<SignupFirstController>(
-                  builder: (controller) {
-                    return Column(
-                      children: [
-                        // 전체 선택 체크박스
-                        CheckboxListTile(
-                          value: controller.signupModel.agreeToAllTerms,
-                          onChanged: controller.updateAllTerms,
-                          title: const Text(
-                            '전체선택',
-                            style: TextStyle(fontSize: 14),
-                          ),
-                          contentPadding: EdgeInsets.zero,
-                          controlAffinity: ListTileControlAffinity.leading,
-                          dense: true,
-                        ),
+              child: GetBuilder<SignupFirstController>(builder: (controller) {
+                return Column(
+                  children: [
+                    // 전체 선택 체크박스
+                    CheckboxListTile(
+                      value: controller.signupModel.agreeToAllTerms,
+                      onChanged: controller.updateAllTerms,
+                      title: const Text(
+                        '전체선택',
+                        style: TextStyle(fontSize: 14),
+                      ),
+                      contentPadding: EdgeInsets.zero,
+                      controlAffinity: ListTileControlAffinity.leading,
+                      dense: true,
+                    ),
 
-                        const Divider(),
+                    const Divider(),
 
-                        // 서비스 이용약관 (필수)
-                        CheckboxListTile(
-                          value: controller.signupModel.agreeToServiceTerms,
-                          onChanged: controller.updateServiceTerms,
-                          title: Row(
-                            children: [
-                              const Text('(필수) 이용약관 동의', style: TextStyle(fontSize: 14)),
-                              const Spacer(),
-                              InkWell(
-                                onTap: () => controller.viewTerms('service'),
-                                child: const Text(
-                                  '보기',
-                                  style: TextStyle(fontSize: 14, color: Colors.blue),
-                                ),
-                              ),
-                            ],
+                    // 서비스 이용약관 (필수)
+                    CheckboxListTile(
+                      value: controller.signupModel.agreeToServiceTerms,
+                      onChanged: controller.updateServiceTerms,
+                      title: Row(
+                        children: [
+                          const Text('(필수) 이용약관 동의',
+                              style: TextStyle(fontSize: 14)),
+                          const Spacer(),
+                          InkWell(
+                            onTap: () => controller.viewTerms('service'),
+                            child: const Text(
+                              '보기',
+                              style:
+                                  TextStyle(fontSize: 14, color: Colors.blue),
+                            ),
                           ),
-                          contentPadding: EdgeInsets.zero,
-                          controlAffinity: ListTileControlAffinity.leading,
-                          dense: true,
-                        ),
+                        ],
+                      ),
+                      contentPadding: EdgeInsets.zero,
+                      controlAffinity: ListTileControlAffinity.leading,
+                      dense: true,
+                    ),
 
-                        // 개인정보 수집 및 이용 동의 (필수)
-                        CheckboxListTile(
-                          value: controller.signupModel.agreeToPrivacyPolicy,
-                          onChanged: controller.updatePrivacyPolicy,
-                          title: Row(
-                            children: [
-                              const Text('(필수) 개인정보 수집 및 이용 동의', style: TextStyle(fontSize: 14)),
-                              const Spacer(),
-                              InkWell(
-                                onTap: () => controller.viewTerms('privacy'),
-                                child: const Text(
-                                  '보기',
-                                  style: TextStyle(fontSize: 14, color: Colors.blue),
-                                ),
-                              ),
-                            ],
+                    // 개인정보 수집 및 이용 동의 (필수)
+                    CheckboxListTile(
+                      value: controller.signupModel.agreeToPrivacyPolicy,
+                      onChanged: controller.updatePrivacyPolicy,
+                      title: Row(
+                        children: [
+                          const Text('(필수) 개인정보 수집 및 이용 동의',
+                              style: TextStyle(fontSize: 14)),
+                          const Spacer(),
+                          InkWell(
+                            onTap: () => controller.viewTerms('privacy'),
+                            child: const Text(
+                              '보기',
+                              style:
+                                  TextStyle(fontSize: 14, color: Colors.blue),
+                            ),
                           ),
-                          contentPadding: EdgeInsets.zero,
-                          controlAffinity: ListTileControlAffinity.leading,
-                          dense: true,
-                        ),
+                        ],
+                      ),
+                      contentPadding: EdgeInsets.zero,
+                      controlAffinity: ListTileControlAffinity.leading,
+                      dense: true,
+                    ),
 
-                        // 마케팅 정보 수신 동의 (선택)
-                        CheckboxListTile(
-                          value: controller.signupModel.agreeToMarketingInfo,
-                          onChanged: controller.updateMarketingInfo,
-                          title: Row(
-                            children: [
-                              const Text('(선택) 마케팅 정보 수신 동의', style: TextStyle(fontSize: 14)),
-                              const Spacer(),
-                              InkWell(
-                                onTap: () => controller.viewTerms('marketing'),
-                                child: const Text(
-                                  '보기',
-                                  style: TextStyle(fontSize: 14, color: Colors.blue),
-                                ),
-                              ),
-                            ],
+                    // 마케팅 정보 수신 동의 (선택)
+                    CheckboxListTile(
+                      value: controller.signupModel.agreeToMarketingInfo,
+                      onChanged: controller.updateMarketingInfo,
+                      title: Row(
+                        children: [
+                          const Text('(선택) 마케팅 정보 수신 동의',
+                              style: TextStyle(fontSize: 14)),
+                          const Spacer(),
+                          InkWell(
+                            onTap: () => controller.viewTerms('marketing'),
+                            child: const Text(
+                              '보기',
+                              style:
+                                  TextStyle(fontSize: 14, color: Colors.blue),
+                            ),
                           ),
-                          contentPadding: EdgeInsets.zero,
-                          controlAffinity: ListTileControlAffinity.leading,
-                          dense: true,
-                        ),
-                      ],
-                    );
-                  }
-              ),
+                        ],
+                      ),
+                      contentPadding: EdgeInsets.zero,
+                      controlAffinity: ListTileControlAffinity.leading,
+                      dense: true,
+                    ),
+                  ],
+                );
+              }),
             ),
           ),
 
@@ -183,31 +187,30 @@ class _SignupFirstPageState extends State<SignupFirstPage> {
             child: SizedBox(
               width: double.infinity,
               height: 50,
-              child: GetBuilder<SignupFirstController>(
-                  builder: (controller) {
-                    return ElevatedButton(
-                      onPressed: controller.signupModel.isFirstNextButtonEnabled
-                          ? controller.navigateToSecondPage
-                          : null,
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: controller.signupModel.isFirstNextButtonEnabled
+              child: GetBuilder<SignupFirstController>(builder: (controller) {
+                return ElevatedButton(
+                  onPressed: controller.signupModel.isFirstNextButtonEnabled
+                      ? controller.navigateToSecondPage
+                      : null,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor:
+                        controller.signupModel.isFirstNextButtonEnabled
                             ? Colors.blue
                             : Colors.grey,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(5),
-                        ),
-                      ),
-                      child: const Text(
-                        '다음',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                    );
-                  }
-              ),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                  ),
+                  child: const Text(
+                    '다음',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                );
+              }),
             ),
           ),
         ],

@@ -8,9 +8,11 @@ class SignupSecondController extends GetxController {
   // Text controllers
   final TextEditingController idController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  final TextEditingController passwordConfirmController = TextEditingController();
+  final TextEditingController passwordConfirmController =
+      TextEditingController();
   final TextEditingController phoneController = TextEditingController();
-  final TextEditingController verificationCodeController = TextEditingController();
+  final TextEditingController verificationCodeController =
+      TextEditingController();
 
   @override
   void onInit() {
@@ -22,7 +24,8 @@ class SignupSecondController extends GetxController {
 
     // Get marketing consent from previous page
     if (Get.arguments != null && Get.arguments is Map) {
-      signupModel.agreeToMarketingInfo = Get.arguments['marketingConsent'] ?? false;
+      signupModel.agreeToMarketingInfo =
+          Get.arguments['marketingConsent'] ?? false;
     }
 
     // Add listeners to text controllers
@@ -46,9 +49,9 @@ class SignupSecondController extends GetxController {
   // Validate ID
   void _validateId() {
     final id = idController.text;
-    final hasMinLength = id.length >= 6;  // Minimum 6 characters
-    final hasLetters = id.contains(RegExp(r'[A-Za-z]'));  // Contains letters
-    final hasDigits = id.contains(RegExp(r'[0-9]'));  // Contains digits
+    final hasMinLength = id.length >= 6; // Minimum 6 characters
+    final hasLetters = id.contains(RegExp(r'[A-Za-z]')); // Contains letters
+    final hasDigits = id.contains(RegExp(r'[0-9]')); // Contains digits
 
     signupModel.userId = id;
     signupModel.isIdValid = hasMinLength && hasLetters && hasDigits;

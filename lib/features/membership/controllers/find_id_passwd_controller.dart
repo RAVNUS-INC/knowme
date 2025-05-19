@@ -41,12 +41,12 @@ class FindIdPasswdController extends GetxController {
   void _updateIdSubmitButton() {
     if (idFindMethod.value == 0) {
       // Email validation
-      canSubmitFindId.value = emailController.text.isNotEmpty &&
-          emailController.text.contains('@');
+      canSubmitFindId.value =
+          emailController.text.isNotEmpty && emailController.text.contains('@');
     } else {
       // Phone validation
-      canSubmitFindId.value = phoneController.text.isNotEmpty &&
-          phoneController.text.length >= 10;
+      canSubmitFindId.value =
+          phoneController.text.isNotEmpty && phoneController.text.length >= 10;
     }
   }
 

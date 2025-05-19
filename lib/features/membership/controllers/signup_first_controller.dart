@@ -45,9 +45,8 @@ class SignupFirstController extends GetxController {
   // Method to handle navigation to next screen
   void navigateToSecondPage() {
     if (signupModel.isFirstNextButtonEnabled) {
-      Get.toNamed('/signup/second', arguments: {
-        'marketingConsent': signupModel.agreeToMarketingInfo
-      });
+      Get.toNamed('/signup/second',
+          arguments: {'marketingConsent': signupModel.agreeToMarketingInfo});
     }
   }
 

@@ -252,7 +252,8 @@ class _SignupThirdPageState extends State<SignupThirdPage> {
               borderRadius: BorderRadius.circular(8),
               borderSide: const BorderSide(color: Colors.blue),
             ),
-            contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
+            contentPadding:
+                const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
           ),
           keyboardType: TextInputType.text,
           textInputAction: TextInputAction.next,
@@ -311,7 +312,8 @@ class _SignupThirdPageState extends State<SignupThirdPage> {
                     borderRadius: BorderRadius.circular(8),
                     borderSide: const BorderSide(color: Colors.blue),
                   ),
-                  contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
+                  contentPadding:
+                      const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
                 ),
                 keyboardType: TextInputType.emailAddress,
                 textInputAction: TextInputAction.next,
@@ -355,10 +357,12 @@ class _SignupThirdPageState extends State<SignupThirdPage> {
                         }
                       });
                     },
-                    items: SignupModel.emailDomains.map<DropdownMenuItem<String>>((String value) {
+                    items: SignupModel.emailDomains
+                        .map<DropdownMenuItem<String>>((String value) {
                       return DropdownMenuItem<String>(
                         value: value,
-                        child: Text(value, style: const TextStyle(fontSize: 14)),
+                        child:
+                            Text(value, style: const TextStyle(fontSize: 14)),
                       );
                     }).toList(),
                   ),
@@ -387,7 +391,8 @@ class _SignupThirdPageState extends State<SignupThirdPage> {
                   borderRadius: BorderRadius.circular(8),
                   borderSide: const BorderSide(color: Colors.blue),
                 ),
-                contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
+                contentPadding:
+                    const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
               ),
               keyboardType: TextInputType.text,
               textInputAction: TextInputAction.next,
@@ -451,7 +456,8 @@ class _SignupThirdPageState extends State<SignupThirdPage> {
                     borderRadius: BorderRadius.circular(8),
                     borderSide: const BorderSide(color: Colors.blue),
                   ),
-                  contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
+                  contentPadding:
+                      const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
                 ),
                 textInputAction: TextInputAction.next,
                 enableInteractiveSelection: true,
@@ -474,7 +480,8 @@ class _SignupThirdPageState extends State<SignupThirdPage> {
                     borderRadius: BorderRadius.circular(8),
                     borderSide: const BorderSide(color: Colors.blue),
                   ),
-                  contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
+                  contentPadding:
+                      const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
                 ),
                 textInputAction: TextInputAction.next,
                 enableInteractiveSelection: true,
@@ -508,7 +515,8 @@ class _SignupThirdPageState extends State<SignupThirdPage> {
                   controller.updateGrade(selectedGrade);
                 });
               },
-              items: SignupModel.grades.map<DropdownMenuItem<String>>((String value) {
+              items: SignupModel.grades
+                  .map<DropdownMenuItem<String>>((String value) {
                 return DropdownMenuItem<String>(
                   value: value,
                   child: Text(value, style: const TextStyle(fontSize: 14)),
@@ -571,7 +579,8 @@ class _SignupThirdPageState extends State<SignupThirdPage> {
                   selectedPosition == '전체' ? '희망직종 선택' : selectedPosition,
                   style: TextStyle(
                     fontSize: 14,
-                    color: selectedPosition == '전체' ? Colors.grey : Colors.black,
+                    color:
+                        selectedPosition == '전체' ? Colors.grey : Colors.black,
                   ),
                 ),
                 const Icon(Icons.keyboard_arrow_down, size: 24),
@@ -613,7 +622,8 @@ class _SignupThirdPageState extends State<SignupThirdPage> {
                 ),
                 // 상단 헤더
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [

@@ -49,12 +49,7 @@ class SignupModel {
     'hotmail.com'
   ];
 
-  static final List<String> grades = [
-    '1학년',
-    '2학년',
-    '3학년',
-    '4학년'
-  ];
+  static final List<String> grades = ['1학년', '2학년', '3학년', '4학년'];
 
   static final List<String> positions = [
     '전체',

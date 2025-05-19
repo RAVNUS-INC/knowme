@@ -9,7 +9,8 @@ class FindIdPasswd extends StatefulWidget {
   State<FindIdPasswd> createState() => _FindIdPasswdState();
 }
 
-class _FindIdPasswdState extends State<FindIdPasswd> with SingleTickerProviderStateMixin {
+class _FindIdPasswdState extends State<FindIdPasswd>
+    with SingleTickerProviderStateMixin {
   late TabController _tabController;
   late FindIdPasswdController controller;
 
@@ -34,7 +35,8 @@ class _FindIdPasswdState extends State<FindIdPasswd> with SingleTickerProviderSt
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => FocusScope.of(context).unfocus(), // Dismiss keyboard when tapping outside
+      onTap: () => FocusScope.of(context)
+          .unfocus(), // Dismiss keyboard when tapping outside
       child: Scaffold(
         backgroundColor: Colors.white,
         body: SafeArea(
@@ -86,19 +88,26 @@ class _FindIdPasswdState extends State<FindIdPasswd> with SingleTickerProviderSt
                               child: Column(
                                 children: [
                                   Padding(
-                                    padding: const EdgeInsets.symmetric(vertical: 12),
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 12),
                                     child: Text(
                                       '아이디 찾기',
                                       style: TextStyle(
-                                        color: _tabController.index == 0 ? Colors.blue : Colors.grey,
-                                        fontWeight: _tabController.index == 0 ? FontWeight.bold : FontWeight.normal,
+                                        color: _tabController.index == 0
+                                            ? Colors.blue
+                                            : Colors.grey,
+                                        fontWeight: _tabController.index == 0
+                                            ? FontWeight.bold
+                                            : FontWeight.normal,
                                       ),
                                     ),
                                   ),
                                   // Blue indicator for active tab
                                   Container(
                                     height: 3,
-                                    color: _tabController.index == 0 ? Colors.blue : Colors.transparent,
+                                    color: _tabController.index == 0
+                                        ? Colors.blue
+                                        : Colors.transparent,
                                   ),
                                 ],
                               ),
@@ -113,19 +122,26 @@ class _FindIdPasswdState extends State<FindIdPasswd> with SingleTickerProviderSt
                               child: Column(
                                 children: [
                                   Padding(
-                                    padding: const EdgeInsets.symmetric(vertical: 12),
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 12),
                                     child: Text(
                                       '비밀번호 찾기',
                                       style: TextStyle(
-                                        color: _tabController.index == 1 ? Colors.blue : Colors.grey,
-                                        fontWeight: _tabController.index == 1 ? FontWeight.bold : FontWeight.normal,
+                                        color: _tabController.index == 1
+                                            ? Colors.blue
+                                            : Colors.grey,
+                                        fontWeight: _tabController.index == 1
+                                            ? FontWeight.bold
+                                            : FontWeight.normal,
                                       ),
                                     ),
                                   ),
                                   // Blue indicator for active tab
                                   Container(
                                     height: 3,
-                                    color: _tabController.index == 1 ? Colors.blue : Colors.transparent,
+                                    color: _tabController.index == 1
+                                        ? Colors.blue
+                                        : Colors.transparent,
                                   ),
                                 ],
                               ),
@@ -150,130 +166,143 @@ class _FindIdPasswdState extends State<FindIdPasswd> with SingleTickerProviderSt
                         children: [
                           // Email radio option
                           Obx(() => Row(
-                            children: [
-                              Radio<int>(
-                                value: 0,
-                                groupValue: controller.idFindMethod.value,
-                                onChanged: (value) {
-                                  controller.changeIdFindMethod(value!);
-                                },
-                                activeColor: Colors.blue,
-                              ),
-                              const Text(
-                                '이메일로 찾기',
-                                style: TextStyle(
-                                  color: Colors.blue,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                            ],
-                          )),
+                                children: [
+                                  Radio<int>(
+                                    value: 0,
+                                    groupValue: controller.idFindMethod.value,
+                                    onChanged: (value) {
+                                      controller.changeIdFindMethod(value!);
+                                    },
+                                    activeColor: Colors.blue,
+                                  ),
+                                  const Text(
+                                    '이메일로 찾기',
+                                    style: TextStyle(
+                                      color: Colors.blue,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ),
+                                ],
+                              )),
 
                           // Email text field (visible only when email option is selected)
                           Obx(() => Visibility(
-                            visible: controller.idFindMethod.value == 0,
-                            child: Padding(
-                              padding: const EdgeInsets.only(left: 30.0, right: 20.0, bottom: 20.0),
-                              child: TextField(
-                                controller: controller.emailController,
-                                decoration: InputDecoration(
-                                  hintText: '이메일을 입력하세요',
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(4),
-                                    borderSide: const BorderSide(color: Colors.grey),
+                                visible: controller.idFindMethod.value == 0,
+                                child: Padding(
+                                  padding: const EdgeInsets.only(
+                                      left: 30.0, right: 20.0, bottom: 20.0),
+                                  child: TextField(
+                                    controller: controller.emailController,
+                                    decoration: InputDecoration(
+                                      hintText: '이메일을 입력하세요',
+                                      border: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(4),
+                                        borderSide: const BorderSide(
+                                            color: Colors.grey),
+                                      ),
+                                      enabledBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(4),
+                                        borderSide: const BorderSide(
+                                            color: Colors.grey),
+                                      ),
+                                      focusedBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(4),
+                                        borderSide: const BorderSide(
+                                            color: Colors.blue),
+                                      ),
+                                      contentPadding:
+                                          const EdgeInsets.symmetric(
+                                              horizontal: 12, vertical: 14),
+                                    ),
+                                    keyboardType: TextInputType.emailAddress,
                                   ),
-                                  enabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(4),
-                                    borderSide: const BorderSide(color: Colors.grey),
-                                  ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(4),
-                                    borderSide: const BorderSide(color: Colors.blue),
-                                  ),
-                                  contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
                                 ),
-                                keyboardType: TextInputType.emailAddress,
-                              ),
-                            ),
-                          )),
+                              )),
 
                           // Phone radio option
                           Obx(() => Row(
-                            children: [
-                              Radio<int>(
-                                value: 1,
-                                groupValue: controller.idFindMethod.value,
-                                onChanged: (value) {
-                                  controller.changeIdFindMethod(value!);
-                                },
-                                activeColor: Colors.blue,
-                              ),
-                              const Text(
-                                '휴대폰 번호로 찾기',
-                                style: TextStyle(
-                                  color: Colors.blue,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                            ],
-                          )),
+                                children: [
+                                  Radio<int>(
+                                    value: 1,
+                                    groupValue: controller.idFindMethod.value,
+                                    onChanged: (value) {
+                                      controller.changeIdFindMethod(value!);
+                                    },
+                                    activeColor: Colors.blue,
+                                  ),
+                                  const Text(
+                                    '휴대폰 번호로 찾기',
+                                    style: TextStyle(
+                                      color: Colors.blue,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ),
+                                ],
+                              )),
 
                           // Phone text field (visible only when phone option is selected)
                           Obx(() => Visibility(
-                            visible: controller.idFindMethod.value == 1,
-                            child: Padding(
-                              padding: const EdgeInsets.only(left: 30.0, right: 20.0, bottom: 20.0),
-                              child: TextField(
-                                controller: controller.phoneController,
-                                decoration: InputDecoration(
-                                  hintText: '휴대폰 번호를 입력하세요',
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(4),
-                                    borderSide: const BorderSide(color: Colors.grey),
+                                visible: controller.idFindMethod.value == 1,
+                                child: Padding(
+                                  padding: const EdgeInsets.only(
+                                      left: 30.0, right: 20.0, bottom: 20.0),
+                                  child: TextField(
+                                    controller: controller.phoneController,
+                                    decoration: InputDecoration(
+                                      hintText: '휴대폰 번호를 입력하세요',
+                                      border: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(4),
+                                        borderSide: const BorderSide(
+                                            color: Colors.grey),
+                                      ),
+                                      enabledBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(4),
+                                        borderSide: const BorderSide(
+                                            color: Colors.grey),
+                                      ),
+                                      focusedBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(4),
+                                        borderSide: const BorderSide(
+                                            color: Colors.blue),
+                                      ),
+                                      contentPadding:
+                                          const EdgeInsets.symmetric(
+                                              horizontal: 12, vertical: 14),
+                                    ),
+                                    keyboardType: TextInputType.phone,
                                   ),
-                                  enabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(4),
-                                    borderSide: const BorderSide(color: Colors.grey),
-                                  ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(4),
-                                    borderSide: const BorderSide(color: Colors.blue),
-                                  ),
-                                  contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
                                 ),
-                                keyboardType: TextInputType.phone,
-                              ),
-                            ),
-                          )),
+                              )),
 
                           const Spacer(),
 
                           // Confirm button
                           Obx(() => SizedBox(
-                            width: double.infinity,
-                            height: 50,
-                            child: ElevatedButton(
-                              onPressed: controller.canSubmitFindId.value
-                                  ? () => controller.submitFindId()
-                                  : null,
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: controller.canSubmitFindId.value
-                                    ? Colors.blue
-                                    : Colors.grey[300],
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(4),
+                                width: double.infinity,
+                                height: 50,
+                                child: ElevatedButton(
+                                  onPressed: controller.canSubmitFindId.value
+                                      ? () => controller.submitFindId()
+                                      : null,
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor:
+                                        controller.canSubmitFindId.value
+                                            ? Colors.blue
+                                            : Colors.grey[300],
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(4),
+                                    ),
+                                  ),
+                                  child: const Text(
+                                    '확인',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ),
                                 ),
-                              ),
-                              child: const Text(
-                                '확인',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                            ),
-                          )),
+                              )),
                         ],
                       ),
                     ),
@@ -291,17 +320,21 @@ class _FindIdPasswdState extends State<FindIdPasswd> with SingleTickerProviderSt
                               hintText: '아이디를 입력하세요',
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(4),
-                                borderSide: const BorderSide(color: Colors.grey),
+                                borderSide:
+                                    const BorderSide(color: Colors.grey),
                               ),
                               enabledBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(4),
-                                borderSide: const BorderSide(color: Colors.grey),
+                                borderSide:
+                                    const BorderSide(color: Colors.grey),
                               ),
                               focusedBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(4),
-                                borderSide: const BorderSide(color: Colors.blue),
+                                borderSide:
+                                    const BorderSide(color: Colors.blue),
                               ),
-                              contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
+                              contentPadding: const EdgeInsets.symmetric(
+                                  horizontal: 12, vertical: 14),
                             ),
                           ),
 
@@ -309,30 +342,31 @@ class _FindIdPasswdState extends State<FindIdPasswd> with SingleTickerProviderSt
 
                           // Confirm button
                           Obx(() => SizedBox(
-                            width: double.infinity,
-                            height: 50,
-                            child: ElevatedButton(
-                              onPressed: controller.canSubmitFindPw.value
-                                  ? () => controller.submitFindPassword()
-                                  : null,
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: controller.canSubmitFindPw.value
-                                    ? Colors.blue
-                                    : Colors.grey[300],
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(4),
+                                width: double.infinity,
+                                height: 50,
+                                child: ElevatedButton(
+                                  onPressed: controller.canSubmitFindPw.value
+                                      ? () => controller.submitFindPassword()
+                                      : null,
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor:
+                                        controller.canSubmitFindPw.value
+                                            ? Colors.blue
+                                            : Colors.grey[300],
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(4),
+                                    ),
+                                  ),
+                                  child: const Text(
+                                    '확인',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ),
                                 ),
-                              ),
-                              child: const Text(
-                                '확인',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                            ),
-                          )),
+                              )),
                         ],
                       ),
                     ),

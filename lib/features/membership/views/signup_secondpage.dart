@@ -131,7 +131,8 @@ class SignupSecondPage extends StatelessWidget {
                           contentPadding: const EdgeInsets.symmetric(
                               horizontal: 12, vertical: 14),
                           suffixIcon: controller.signupModel.isIdValid
-                              ? const Icon(Icons.check_circle, color: Colors.blue)
+                              ? const Icon(Icons.check_circle,
+                                  color: Colors.blue)
                               : null,
                         ),
                         keyboardType: TextInputType.text,
@@ -187,15 +188,19 @@ class SignupSecondPage extends StatelessWidget {
                             borderRadius: BorderRadius.circular(8),
                             borderSide: const BorderSide(color: Colors.blue),
                           ),
-                          contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
+                          contentPadding: const EdgeInsets.symmetric(
+                              horizontal: 12, vertical: 14),
                           suffixIcon: Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               if (controller.signupModel.isPasswordValid)
-                                const Icon(Icons.check_circle, color: Colors.blue),
+                                const Icon(Icons.check_circle,
+                                    color: Colors.blue),
                               IconButton(
                                 icon: Icon(
-                                  controller.signupModel.obscurePassword ? Icons.visibility : Icons.visibility_off,
+                                  controller.signupModel.obscurePassword
+                                      ? Icons.visibility
+                                      : Icons.visibility_off,
                                   color: Colors.grey,
                                 ),
                                 onPressed: controller.togglePasswordVisibility,
@@ -243,7 +248,8 @@ class SignupSecondPage extends StatelessWidget {
                     GetBuilder<SignupSecondController>(
                       builder: (controller) => TextField(
                         controller: controller.passwordConfirmController,
-                        obscureText: !controller.signupModel.obscurePasswordConfirm,
+                        obscureText:
+                            !controller.signupModel.obscurePasswordConfirm,
                         decoration: InputDecoration(
                           hintText: '비밀번호를 입력해 주세요',
                           hintStyle: const TextStyle(color: Colors.grey),
@@ -255,18 +261,23 @@ class SignupSecondPage extends StatelessWidget {
                             borderRadius: BorderRadius.circular(8),
                             borderSide: const BorderSide(color: Colors.blue),
                           ),
-                          contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
+                          contentPadding: const EdgeInsets.symmetric(
+                              horizontal: 12, vertical: 14),
                           suffixIcon: Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               if (controller.signupModel.isPasswordConfirmValid)
-                                const Icon(Icons.check_circle, color: Colors.blue),
+                                const Icon(Icons.check_circle,
+                                    color: Colors.blue),
                               IconButton(
                                 icon: Icon(
-                                  controller.signupModel.obscurePasswordConfirm ? Icons.visibility : Icons.visibility_off,
+                                  controller.signupModel.obscurePasswordConfirm
+                                      ? Icons.visibility
+                                      : Icons.visibility_off,
                                   color: Colors.grey,
                                 ),
-                                onPressed: controller.togglePasswordConfirmVisibility,
+                                onPressed:
+                                    controller.togglePasswordConfirmVisibility,
                               ),
                             ],
                           ),
@@ -311,13 +322,13 @@ class SignupSecondPage extends StatelessWidget {
                                 hintStyle: const TextStyle(color: Colors.grey),
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(8),
-                                  borderSide: const BorderSide(
-                                      color: Colors.grey),
+                                  borderSide:
+                                      const BorderSide(color: Colors.grey),
                                 ),
                                 focusedBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(8),
-                                  borderSide: const BorderSide(
-                                      color: Colors.blue),
+                                  borderSide:
+                                      const BorderSide(color: Colors.blue),
                                 ),
                                 contentPadding: const EdgeInsets.symmetric(
                                     horizontal: 12, vertical: 14),
@@ -392,9 +403,10 @@ class SignupSecondPage extends StatelessWidget {
                         ? controller.navigateToThirdPage
                         : null,
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: controller.signupModel.isSecondNextButtonEnabled
-                          ? Colors.blue
-                          : Colors.grey[400],
+                      backgroundColor:
+                          controller.signupModel.isSecondNextButtonEnabled
+                              ? Colors.blue
+                              : Colors.grey[400],
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(5),
                       ),

@@ -50,35 +50,37 @@ class LoginPage extends StatelessWidget {
                   ),
                   const SizedBox(height: 12),
                   Obx(() => TextField(
-                    controller: passwordController,
-                    obscureText: controller.obscureText.value,
-                    onChanged: controller.updatePassword,
-                    decoration: _inputDecoration('비밀번호').copyWith(
-                      suffixIcon: IconButton(
-                        icon: Icon(
-                          controller.obscureText.value
-                              ? Icons.visibility_off
-                              : Icons.visibility,
-                          color: Colors.grey,
+                        controller: passwordController,
+                        obscureText: controller.obscureText.value,
+                        onChanged: controller.updatePassword,
+                        decoration: _inputDecoration('비밀번호').copyWith(
+                          suffixIcon: IconButton(
+                            icon: Icon(
+                              controller.obscureText.value
+                                  ? Icons.visibility_off
+                                  : Icons.visibility,
+                              color: Colors.grey,
+                            ),
+                            onPressed: () =>
+                                controller.togglePasswordVisibility(),
+                          ),
                         ),
-                        onPressed: () => controller.togglePasswordVisibility(),
-                      ),
-                    ),
-                    textInputAction: TextInputAction.done,
-                    onSubmitted: (_) => dismissKeyboard(),
-                  )),
+                        textInputAction: TextInputAction.done,
+                        onSubmitted: (_) => dismissKeyboard(),
+                      )),
                   const SizedBox(height: 12),
                   Row(
                     children: [
                       Obx(() => Checkbox(
-                        value: controller.rememberAccount.value,
-                        onChanged: controller.toggleRememberAccount,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(3),
-                        ),
-                        materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                        visualDensity: VisualDensity.compact,
-                      )),
+                            value: controller.rememberAccount.value,
+                            onChanged: controller.toggleRememberAccount,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(3),
+                            ),
+                            materialTapTargetSize:
+                                MaterialTapTargetSize.shrinkWrap,
+                            visualDensity: VisualDensity.compact,
+                          )),
                       const Text('로그인 상태 저장', style: TextStyle(fontSize: 12)),
                     ],
                   ),
@@ -110,11 +112,13 @@ class LoginPage extends StatelessWidget {
                     children: [
                       TextButton(
                         onPressed: () => controller.handleRegister(),
-                        child: const Text('회원가입', style: TextStyle(color: Colors.grey)),
+                        child: const Text('회원가입',
+                            style: TextStyle(color: Colors.grey)),
                       ),
                       TextButton(
                         onPressed: () => controller.handleForgotPassword(),
-                        child: const Text('아이디/비밀번호 찾기', style: TextStyle(color: Colors.grey)),
+                        child: const Text('아이디/비밀번호 찾기',
+                            style: TextStyle(color: Colors.grey)),
                       ),
                     ],
                   ),
@@ -126,7 +130,8 @@ class LoginPage extends StatelessWidget {
                       dismissKeyboard();
                       controller.handleSocialLogin('카카오');
                     },
-                    child: Image.asset('assets/images/kakao_login_medium_wide.png'),
+                    child: Image.asset(
+                        'assets/images/kakao_login_medium_wide.png'),
                   ),
                   const SizedBox(height: 10),
                   GestureDetector(
