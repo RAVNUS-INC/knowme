@@ -7,8 +7,8 @@ class SignupSecondPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Get.put(SignupSecondController());
     // GetX 컨트롤러 초기화
-    final controller = Get.put(SignupSecondController());
 
     return GestureDetector(
       onTap: () {
