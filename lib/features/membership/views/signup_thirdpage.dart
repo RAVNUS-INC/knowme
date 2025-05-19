@@ -15,13 +15,6 @@ class _SignupThirdPageState extends State<SignupThirdPage> {
   final SignupModel _signupModel = SignupModel();
   late SignupThirdController controller;
 
-  // 텍스트 컨트롤러
-  final TextEditingController nameController = TextEditingController();
-  final TextEditingController emailPrefixController = TextEditingController();
-  final TextEditingController schoolNameController = TextEditingController();
-  final TextEditingController majorController = TextEditingController();
-  final TextEditingController domainController = TextEditingController();
-
   // 선택 상태 변수
   String selectedDomain = SignupModel.emailDomains[0]; // '직접입력'
   String selectedGrade = SignupModel.grades[0]; // '1학년'
@@ -37,45 +30,14 @@ class _SignupThirdPageState extends State<SignupThirdPage> {
       FocusManager.instance.primaryFocus?.unfocus();
     });
 
-    // 컨트롤러 초기화
+    // 컨트롤러 초기화 - TextEditingController는 컨트롤러에서 관리함
     controller = Get.put(SignupThirdController(model: _signupModel));
-
-    // 텍스트 컨트롤러에 리스너 추가
-    nameController.addListener(() {
-      controller.updateName(nameController.text);
-    });
-
-    emailPrefixController.addListener(() {
-      controller.updateEmailPrefix(emailPrefixController.text);
-    });
-
-    domainController.addListener(() {
-      if (selectedDomain == '직접입력') {
-        controller.updateEmailDomain(domainController.text);
-      }
-    });
-
-    schoolNameController.addListener(() {
-      controller.updateSchoolName(schoolNameController.text);
-    });
-
-    majorController.addListener(() {
-      controller.updateMajor(majorController.text);
-    });
   }
 
   @override
   void dispose() {
-    // 텍스트 컨트롤러 해제
-    nameController.dispose();
-    emailPrefixController.dispose();
-    domainController.dispose();
-    schoolNameController.dispose();
-    majorController.dispose();
-
     // 포커스 해제
     FocusManager.instance.primaryFocus?.unfocus();
-
     super.dispose();
   }
 
@@ -239,7 +201,7 @@ class _SignupThirdPageState extends State<SignupThirdPage> {
         ),
         const SizedBox(height: 12),
         TextField(
-          controller: nameController,
+          controller: controller.nameController,
           decoration: InputDecoration(
             hintText: '이름을 입력해 주세요',
             hintStyle: const TextStyle(color: Colors.grey),
@@ -252,7 +214,7 @@ class _SignupThirdPageState extends State<SignupThirdPage> {
               borderSide: const BorderSide(color: Colors.blue),
             ),
             contentPadding:
-                const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
+            const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
           ),
           keyboardType: TextInputType.text,
           textInputAction: TextInputAction.next,
@@ -299,7 +261,7 @@ class _SignupThirdPageState extends State<SignupThirdPage> {
             Expanded(
               flex: 1,
               child: TextField(
-                controller: emailPrefixController,
+                controller: controller.emailPrefixController,
                 decoration: InputDecoration(
                   hintText: '이메일 주소',
                   hintStyle: const TextStyle(color: Colors.grey),
@@ -312,7 +274,7 @@ class _SignupThirdPageState extends State<SignupThirdPage> {
                     borderSide: const BorderSide(color: Colors.blue),
                   ),
                   contentPadding:
-                      const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
+                  const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
                 ),
                 keyboardType: TextInputType.emailAddress,
                 textInputAction: TextInputAction.next,
@@ -352,7 +314,7 @@ class _SignupThirdPageState extends State<SignupThirdPage> {
                         if (selectedDomain != '직접입력') {
                           controller.updateEmailDomain(selectedDomain);
                         } else {
-                          controller.updateEmailDomain(domainController.text);
+                          controller.updateEmailDomain(controller.emailDomainController.text);
                         }
                       });
                     },
@@ -361,7 +323,7 @@ class _SignupThirdPageState extends State<SignupThirdPage> {
                       return DropdownMenuItem<String>(
                         value: value,
                         child:
-                            Text(value, style: const TextStyle(fontSize: 14)),
+                        Text(value, style: const TextStyle(fontSize: 14)),
                       );
                     }).toList(),
                   ),
@@ -376,7 +338,7 @@ class _SignupThirdPageState extends State<SignupThirdPage> {
           Padding(
             padding: const EdgeInsets.only(top: 8.0),
             child: TextField(
-              controller: domainController,
+              controller: controller.emailDomainController,
               decoration: InputDecoration(
                 hintText: '도메인을 입력해 주세요',
                 hintStyle: const TextStyle(color: Colors.grey),
@@ -391,7 +353,7 @@ class _SignupThirdPageState extends State<SignupThirdPage> {
                   borderSide: const BorderSide(color: Colors.blue),
                 ),
                 contentPadding:
-                    const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
+                const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
               ),
               keyboardType: TextInputType.text,
               textInputAction: TextInputAction.next,
@@ -443,7 +405,7 @@ class _SignupThirdPageState extends State<SignupThirdPage> {
             // 학교명 입력
             Expanded(
               child: TextField(
-                controller: schoolNameController,
+                controller: controller.schoolNameController,
                 decoration: InputDecoration(
                   hintText: '학교명',
                   hintStyle: const TextStyle(color: Colors.grey),
@@ -456,7 +418,7 @@ class _SignupThirdPageState extends State<SignupThirdPage> {
                     borderSide: const BorderSide(color: Colors.blue),
                   ),
                   contentPadding:
-                      const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
+                  const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
                 ),
                 textInputAction: TextInputAction.next,
                 enableInteractiveSelection: true,
@@ -467,7 +429,7 @@ class _SignupThirdPageState extends State<SignupThirdPage> {
             // 학과 입력
             Expanded(
               child: TextField(
-                controller: majorController,
+                controller: controller.majorController,
                 decoration: InputDecoration(
                   hintText: '학과',
                   hintStyle: const TextStyle(color: Colors.grey),
@@ -480,7 +442,7 @@ class _SignupThirdPageState extends State<SignupThirdPage> {
                     borderSide: const BorderSide(color: Colors.blue),
                   ),
                   contentPadding:
-                      const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
+                  const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
                 ),
                 textInputAction: TextInputAction.next,
                 enableInteractiveSelection: true,
@@ -579,7 +541,7 @@ class _SignupThirdPageState extends State<SignupThirdPage> {
                   style: TextStyle(
                     fontSize: 14,
                     color:
-                        selectedPosition == '전체' ? Colors.grey : Colors.black,
+                    selectedPosition == '전체' ? Colors.grey : Colors.black,
                   ),
                 ),
                 const Icon(Icons.keyboard_arrow_down, size: 24),
@@ -622,7 +584,7 @@ class _SignupThirdPageState extends State<SignupThirdPage> {
                 // 상단 헤더
                 Padding(
                   padding:
-                      const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                  const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [

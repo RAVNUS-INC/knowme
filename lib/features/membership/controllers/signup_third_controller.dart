@@ -7,18 +7,45 @@ class SignupThirdController extends GetxController {
   final SignupModel model;
   final logger = Logger();
 
+  // TextEditingController 추가
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController emailPrefixController = TextEditingController();
+  final TextEditingController emailDomainController = TextEditingController();
+  final TextEditingController schoolNameController = TextEditingController();
+  final TextEditingController majorController = TextEditingController();
+
   SignupThirdController({required this.model});
 
   @override
   void onInit() {
     super.onInit();
-    // 이전 페이지에서 전달받은 데이터 처리
-    if (Get.arguments != null && Get.arguments is Map) {
-      model.agreeToMarketingInfo = Get.arguments['marketingConsent'] ?? false;
-      model.userId = Get.arguments['userId'] ?? '';
-      model.password = Get.arguments['password'] ?? '';
-      model.phoneNumber = Get.arguments['phoneNumber'] ?? '';
+
+    // 이전 페이지에서 전달받은 데이터 처리 - Map<String, dynamic> 타입 명시
+    if (Get.arguments != null && Get.arguments is Map<String, dynamic>) {
+      final Map<String, dynamic> args = Get.arguments;
+      model.agreeToMarketingInfo = args['marketingConsent'] ?? false;
+      model.userId = args['userId'] ?? '';
+      model.password = args['password'] ?? '';
+      model.phoneNumber = args['phoneNumber'] ?? '';
     }
+
+    // TextController에 리스너 추가
+    nameController.addListener(() => updateName(nameController.text));
+    emailPrefixController.addListener(() => updateEmailPrefix(emailPrefixController.text));
+    emailDomainController.addListener(() => updateEmailDomain(emailDomainController.text));
+    schoolNameController.addListener(() => updateSchoolName(schoolNameController.text));
+    majorController.addListener(() => updateMajor(majorController.text));
+  }
+
+  @override
+  void onClose() {
+    // 컨트롤러 해제
+    nameController.dispose();
+    emailPrefixController.dispose();
+    emailDomainController.dispose();
+    schoolNameController.dispose();
+    majorController.dispose();
+    super.onClose();
   }
 
   // 이름 업데이트 및 유효성 검사
@@ -98,7 +125,7 @@ class SignupThirdController extends GetxController {
   // 이메일 형식 유효성 검사
   bool _isValidEmail() {
     final emailRegex =
-        RegExp(r'^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$');
+    RegExp(r'^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$');
     final fullEmail = '${model.emailPrefix}@${model.emailDomain}';
     return emailRegex.hasMatch(fullEmail);
   }
