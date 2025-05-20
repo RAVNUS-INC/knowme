@@ -45,36 +45,36 @@ class LoginPage extends StatelessWidget {
                   ),
                   const SizedBox(height: 12),
                   Obx(() => TextField(
-                    controller: controller.passwordController,
-                    obscureText: controller.obscureText.value,
-                    decoration: _inputDecoration('비밀번호').copyWith(
-                      suffixIcon: IconButton(
-                        icon: Icon(
-                          controller.obscureText.value
-                              ? Icons.visibility_off
-                              : Icons.visibility,
-                          color: Colors.grey,
+                        controller: controller.passwordController,
+                        obscureText: controller.obscureText.value,
+                        decoration: _inputDecoration('비밀번호').copyWith(
+                          suffixIcon: IconButton(
+                            icon: Icon(
+                              controller.obscureText.value
+                                  ? Icons.visibility_off
+                                  : Icons.visibility,
+                              color: Colors.grey,
+                            ),
+                            onPressed: () =>
+                                controller.togglePasswordVisibility(),
+                          ),
                         ),
-                        onPressed: () =>
-                            controller.togglePasswordVisibility(),
-                      ),
-                    ),
-                    textInputAction: TextInputAction.done,
-                    onSubmitted: (_) => dismissKeyboard(),
-                  )),
+                        textInputAction: TextInputAction.done,
+                        onSubmitted: (_) => dismissKeyboard(),
+                      )),
                   const SizedBox(height: 12),
                   Row(
                     children: [
                       Obx(() => Checkbox(
-                        value: controller.rememberAccount.value,
-                        onChanged: controller.toggleRememberAccount,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(3),
-                        ),
-                        materialTapTargetSize:
-                        MaterialTapTargetSize.shrinkWrap,
-                        visualDensity: VisualDensity.compact,
-                      )),
+                            value: controller.rememberAccount.value,
+                            onChanged: controller.toggleRememberAccount,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(3),
+                            ),
+                            materialTapTargetSize:
+                                MaterialTapTargetSize.shrinkWrap,
+                            visualDensity: VisualDensity.compact,
+                          )),
                       const Text('로그인 상태 저장', style: TextStyle(fontSize: 12)),
                     ],
                   ),
