@@ -5,8 +5,10 @@ import '../models/login_model.dart';
 
 class LoginController extends GetxController {
   final LoginModel model;
-  final TextEditingController idController;
-  final TextEditingController passwordController;
+
+  // TextEditingController를 컨트롤러에서 생성 및 관리
+  final TextEditingController idController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
 
   // Rx 변수로 상태 관리
   final RxBool obscureText = true.obs;
@@ -14,16 +16,37 @@ class LoginController extends GetxController {
 
   LoginController({
     required this.model,
-    required this.idController,
-    required this.passwordController,
   });
 
-  void updateUserId(String value) {
-    model.userId = value;
+  @override
+  void onInit() {
+    super.onInit();
+    // 초기값 설정 (필요한 경우)
+    if (model.userId.isNotEmpty) {
+      idController.text = model.userId;
+    }
+    if (model.password.isNotEmpty) {
+      passwordController.text = model.password;
+    }
+
+    // 리스너 추가
+    idController.addListener(() {
+      model.userId = idController.text;
+    });
+
+    passwordController.addListener(() {
+      model.password = passwordController.text;
+    });
+
+    rememberAccount.value = model.rememberAccount;
   }
 
-  void updatePassword(String value) {
-    model.password = value;
+  @override
+  void onClose() {
+    // 컨트롤러 해제
+    idController.dispose();
+    passwordController.dispose();
+    super.onClose();
   }
 
   void togglePasswordVisibility() {

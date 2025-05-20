@@ -8,14 +8,10 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TextEditingController idController = TextEditingController();
-    final TextEditingController passwordController = TextEditingController();
     final LoginModel model = LoginModel();
-
+    // 컨트롤러에 모델만 전달하고 텍스트 컨트롤러는 제거
     final LoginController controller = Get.put(LoginController(
       model: model,
-      idController: idController,
-      passwordController: passwordController,
     ));
 
     void dismissKeyboard() {
@@ -43,44 +39,42 @@ class LoginPage extends StatelessWidget {
                   ),
                   const SizedBox(height: 60),
                   TextField(
-                    controller: idController,
-                    onChanged: controller.updateUserId,
+                    controller: controller.idController,
                     decoration: _inputDecoration('아이디'),
                     textInputAction: TextInputAction.next,
                   ),
                   const SizedBox(height: 12),
                   Obx(() => TextField(
-                        controller: passwordController,
-                        obscureText: controller.obscureText.value,
-                        onChanged: controller.updatePassword,
-                        decoration: _inputDecoration('비밀번호').copyWith(
-                          suffixIcon: IconButton(
-                            icon: Icon(
-                              controller.obscureText.value
-                                  ? Icons.visibility_off
-                                  : Icons.visibility,
-                              color: Colors.grey,
-                            ),
-                            onPressed: () =>
-                                controller.togglePasswordVisibility(),
-                          ),
+                    controller: controller.passwordController,
+                    obscureText: controller.obscureText.value,
+                    decoration: _inputDecoration('비밀번호').copyWith(
+                      suffixIcon: IconButton(
+                        icon: Icon(
+                          controller.obscureText.value
+                              ? Icons.visibility_off
+                              : Icons.visibility,
+                          color: Colors.grey,
                         ),
-                        textInputAction: TextInputAction.done,
-                        onSubmitted: (_) => dismissKeyboard(),
-                      )),
+                        onPressed: () =>
+                            controller.togglePasswordVisibility(),
+                      ),
+                    ),
+                    textInputAction: TextInputAction.done,
+                    onSubmitted: (_) => dismissKeyboard(),
+                  )),
                   const SizedBox(height: 12),
                   Row(
                     children: [
                       Obx(() => Checkbox(
-                            value: controller.rememberAccount.value,
-                            onChanged: controller.toggleRememberAccount,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(3),
-                            ),
-                            materialTapTargetSize:
-                                MaterialTapTargetSize.shrinkWrap,
-                            visualDensity: VisualDensity.compact,
-                          )),
+                        value: controller.rememberAccount.value,
+                        onChanged: controller.toggleRememberAccount,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(3),
+                        ),
+                        materialTapTargetSize:
+                        MaterialTapTargetSize.shrinkWrap,
+                        visualDensity: VisualDensity.compact,
+                      )),
                       const Text('로그인 상태 저장', style: TextStyle(fontSize: 12)),
                     ],
                   ),
