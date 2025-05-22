@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import '../../../shared/widgets/base_scaffold.dart';
-import 'ai_analysis_screen.dart';
 
 class AiAnalysisResultScreen extends StatelessWidget {
   const AiAnalysisResultScreen({super.key});
@@ -62,7 +63,7 @@ class AiAnalysisResultScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BaseScaffold(
-      currentIndex: 1, // AI 분석 탭 가정
+      currentIndex: 3, // ✅ AI 분석 탭
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 80),
@@ -99,8 +100,7 @@ class AiAnalysisResultScreen extends StatelessWidget {
               _section('추천 직무', '추천 직무는 다음과 같습니다.\n\n데이터 분석가, PO, 기획자'),
 
               const SizedBox(height: 32),
-              // ✅ 요약
-              Text(
+              const Text(
                 '요약',
                 textAlign: TextAlign.center,
                 style: TextStyle(
@@ -114,39 +114,37 @@ class AiAnalysisResultScreen extends StatelessWidget {
 
               const SizedBox(height: 24),
 
-// ✅ 막대 그래프 영역
+              // ✅ 막대 그래프
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // 🔹 파란 막대 3개 (왼쪽 정렬)
                   _buildBar('실전형 주제', Color(0xFF0068E5), 240),
-                  SizedBox(height: 8),
+                  const SizedBox(height: 8),
                   _buildBar('실무 적용력', Color(0xFF0068E5), 200),
-                  SizedBox(height: 8),
+                  const SizedBox(height: 8),
                   _buildBar('UX 중심 구성', Color(0xFF0068E5), 160),
 
-                  SizedBox(height: 32),
+                  const SizedBox(height: 32),
 
-                  // 🔸 회색 막대 3개 (오른쪽 정렬)
                   Align(
                     alignment: Alignment.centerRight,
                     child: _buildBar('실무 협업 역량', Color(0xCDD0CFC7), 200),
                   ),
-                  SizedBox(height: 8),
+                  const SizedBox(height: 8),
                   Align(
                     alignment: Alignment.centerRight,
                     child: _buildBar('운영 관점 역량', Color(0xCDD0CFC7), 160),
                   ),
-                  SizedBox(height: 8),
+                  const SizedBox(height: 8),
                   Align(
                     alignment: Alignment.centerRight,
                     child: _buildBar('전문성', Color(0xCDD0CFC7), 120),
                   ),
                 ],
               ),
+
               const SizedBox(height: 40),
 
-// ✅ 요약 설명 텍스트
               RichText(
                 textAlign: TextAlign.center,
                 text: const TextSpan(
@@ -189,27 +187,22 @@ class AiAnalysisResultScreen extends StatelessWidget {
               ),
 
               const SizedBox(height: 32),
-// ✅ 활동추천 보러가기 버튼
+
               _RecommendationButton(
                 label: '활동추천 보러가기',
                 onTap: () {
-                  // TODO: 이동할 화면 지정
+                  Get.offAllNamed('/recommendation');
                 },
               ),
             ],
           ),
         ),
       ),
-      onTap: (index) {
-        // TODO: 네비게이션 처리
-        print('탭 $index 클릭');
-      },
     );
   }
 }
 
-
-
+// 막대
 Widget _buildBar(String label, Color color, double width) {
   return Container(
     width: width,
@@ -233,10 +226,7 @@ Widget _buildBar(String label, Color color, double width) {
   );
 }
 
-
-
-
-// 버튼인데 나중에 재사용할수 있게 하겠습니다 ㅠ
+// 추천 버튼
 class _RecommendationButton extends StatelessWidget {
   final String label;
   final VoidCallback onTap;
@@ -299,4 +289,3 @@ class _RecommendationButton extends StatelessWidget {
     );
   }
 }
-

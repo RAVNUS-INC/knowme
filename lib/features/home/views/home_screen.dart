@@ -4,8 +4,6 @@ import '../controllers/home_controller.dart';
 import '../../../shared/widgets/base_scaffold.dart';
 import '../../ai_analysis/views/ai_analysis_screen.dart';
 
-
-
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
@@ -14,13 +12,10 @@ class HomeScreen extends StatelessWidget {
     final controller = Get.find<HomeController>();
 
     return BaseScaffold(
-      currentIndex: 0,
-      onTap: (index) {
-        print('탭 $index 클릭됨');
-      },
+      currentIndex: 0, // ✅ 홈 탭 인덱스만 넘김 (onTap 제거)
       body: Container(
         width: double.infinity,
-        color: const Color(0xFFFAFAFA), // 배경색
+        color: const Color(0xFFFAFAFA),
         child: Column(
           children: [
             const SizedBox(height: 16),
@@ -205,8 +200,9 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: 30),
-            //AI 분석 바로보기 버튼
+            const SizedBox(height: 30),
+
+            // AI 분석 버튼
             GestureDetector(
               onTap: () {
                 Get.to(() => const AiAnalysisScreen());
@@ -267,7 +263,6 @@ class HomeScreen extends StatelessWidget {
   }
 }
 
-// ✅ 공통 아이콘 + 텍스트 위젯
 class _IconLabelItem extends StatelessWidget {
   final String imageName;
   final String label;
