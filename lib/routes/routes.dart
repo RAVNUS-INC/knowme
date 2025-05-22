@@ -1,17 +1,19 @@
 import 'package:get/get.dart';
+import '../features/home/controllers/home_controller.dart';
 import '../features/membership/views/login_page.dart';
 import '../features/membership/views/signup_firstpage.dart';
 import '../features/membership/views/signup_secondpage.dart';
 import '../features/membership/views/signup_thirdpage.dart';
-import '../features/membership/views/find_id_passwd.dart'; // 파일 이름 변경 반영
+import '../features/membership/views/find_id_passwd.dart';
+import '../features/home/views/home_screen.dart'; // ✅ 추가
 
 class AppRoutes {
   static const String login = '/login';
   static const String signupFirst = '/signup/first';
   static const String signupSecond = '/signup/second';
   static const String signupThird = '/signup/third';
-  static const String home = '/home';
-  static const String findIdPasswd = '/find-id-passwd'; // 경로명도 일관성 있게 변경
+  static const String home = '/home'; // ✅ 이미 선언됨
+  static const String findIdPasswd = '/find-id-passwd';
 
   static final routes = [
     GetPage(
@@ -36,9 +38,17 @@ class AppRoutes {
     ),
     GetPage(
       name: findIdPasswd,
-      page: () => const FindIdPasswd(), // 클래스명도 파일명과 일치하도록 변경
-      transition: Transition.downToUp, // Modal-like transition
+      page: () => const FindIdPasswd(),
+      transition: Transition.downToUp,
     ),
-    // You can add other routes here as needed
+    GetPage(
+      name: home,
+      page: () => const HomeScreen(),
+      binding: BindingsBuilder(() {
+        Get.put(HomeController());
+      }),
+      transition: Transition.fadeIn,
+    ),
+
   ];
 }

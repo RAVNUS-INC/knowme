@@ -57,7 +57,7 @@ class LoginController extends GetxController {
     rememberAccount.value = value ?? false;
     model.rememberAccount = rememberAccount.value;
   }
-
+/*
   Future<void> handleLogin() async {
     // 로그인 처리 로직
     try {
@@ -71,6 +71,12 @@ class LoginController extends GetxController {
         snackPosition: SnackPosition.BOTTOM,
       );
     }
+  }
+*/
+///개발동안만 유지하다가 실제 배포 및 제출시엔 삭제 후 위 handelLogin 이용 바람 -jangjimin9766
+  Future<void> handleLogin() async {
+    // 테스트용 바로 이동
+    Get.offAllNamed('/home');
   }
 
   void handleRegister() {
