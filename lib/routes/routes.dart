@@ -7,7 +7,9 @@ import '../features/membership/views/signup_secondpage.dart';
 import '../features/membership/views/signup_thirdpage.dart';
 import '../features/membership/views/find_id_passwd.dart';
 import '../features/home/views/home_screen.dart';
-
+import '../features/ai_analysis/controllers/ai_analysis_controller.dart';
+import '../features/search/controllers/search_controller.dart';
+import '../features/search/views/search_screen.dart';
 class AppRoutes {
   static const String login = '/login';
   static const String signupFirst = '/signup/first';
@@ -15,12 +17,15 @@ class AppRoutes {
   static const String signupThird = '/signup/third';
   static const String home = '/home';
   static const String findIdPasswd = '/find-id-passwd';
+  static const String search = '/search';
+
 
   // ✅ 새 라우트 추가
   static const String post = '/post';
   static const String activity = '/activity';
   static const String recommendation = '/recommendation';
   static const String aiAnalysis = '/ai-analysis';
+
 
   static final routes = [
     GetPage(
@@ -57,11 +62,23 @@ class AppRoutes {
       transition: Transition.fadeIn,
     ),
 
-    // 네비 라우트 등록 후
     GetPage(
-      name: aiAnalysis,
+      name: AppRoutes.aiAnalysis,
       page: () => const AiAnalysisScreen(),
+      binding: BindingsBuilder(() {
+        Get.put(AiAnalysisController()); // ✅ 이게 반드시 있어야 합니다.
+      }),
       transition: Transition.fadeIn,
     ),
+
+    GetPage(
+      name: AppRoutes.search,
+      page: () => const SearchScreen(),
+      binding: BindingsBuilder(() {
+        Get.put(SearchController());
+      }),
+      transition: Transition.fadeIn,
+    ),
+
   ];
 }

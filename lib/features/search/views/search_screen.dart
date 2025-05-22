@@ -1,56 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../../../shared/widgets/base_scaffold.dart';
+import '../controllers/search_controller.dart' as search; // Flutter 내장과 충돌 방지
 
-class SearchScreen extends StatefulWidget {
+class SearchScreen extends StatelessWidget {
   const SearchScreen({super.key});
 
   @override
-  State<SearchScreen> createState() => _SearchScreenState();
-}
-
-class _SearchScreenState extends State<SearchScreen> {
-  final TextEditingController _searchController = TextEditingController();
-  final List<String> _recentSearches = [
-    '프론트엔드 개발자',
-    '프론트엔드',
-    '개발자 공고',
-    'HTML 강의',
-    '대학생 공모전',
-  ];
-
-  bool _isSearching = false;
-
-  @override
-  void initState() {
-    super.initState();
-    _searchController.addListener(() {
-      setState(() {
-        _isSearching = _searchController.text.trim().isNotEmpty;
-      });
-    });
-  }
-
-  // 검색 실행 함수
-  void _handleSearch() {
-    final query = _searchController.text.trim();
-    if (query.isEmpty) return;
-
-    setState(() {
-      _recentSearches.remove(query); // 중복 제거
-      _recentSearches.insert(0, query); // 맨 앞에 추가
-      _searchController.clear();
-    });
-  }
-
-  // 검색어 전체 삭제
-  void _clearRecentSearches() {
-    setState(() {
-      _recentSearches.clear();
-    });
-  }
-
-  @override
   Widget build(BuildContext context) {
+    final controller = Get.find<search.SearchController>();
+
     return BaseScaffold(
       currentIndex: 0,
       body: Padding(
@@ -58,39 +17,36 @@ class _SearchScreenState extends State<SearchScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SearchBarWithAction(
-              controller: _searchController,
-              isSearching: _isSearching,
-              onSearch: _handleSearch,
+            Obx(() => SearchBarWithAction(
+              controller: controller.searchController,
+              isSearching: controller.isSearching.value,
+              onSearch: controller.handleSearch,
               onCancel: () => Navigator.pop(context),
-            ),
+            )),
             const SizedBox(height: 20),
-            _SearchHeader(onClearAll: _clearRecentSearches),
+            _SearchHeader(onClearAll: controller.clearRecentSearches),
             const SizedBox(height: 6),
             Container(height: 1, color: const Color(0xFFE5E5E5)),
             const SizedBox(height: 8),
-            Expanded(child: _buildRecentSearchList()),
+            // ✅ 여기서 타입도 search.SearchController로 명시
+            Obx(() => Expanded(child: _buildRecentSearchList(controller))),
           ],
         ),
       ),
     );
   }
 
-  // 최근 검색어 리스트 렌더링
-  Widget _buildRecentSearchList() {
+  Widget _buildRecentSearchList(search.SearchController controller) {
     return ListView.separated(
       padding: const EdgeInsets.only(top: 4),
-      itemCount: _recentSearches.length,
-      separatorBuilder: (_, __) => Container(height: 1, color: const Color(0xFFE5E5E5)),
+      itemCount: controller.recentSearches.length,
+      separatorBuilder: (_, __) =>
+          Container(height: 1, color: const Color(0xFFE5E5E5)),
       itemBuilder: (context, index) {
-        final item = _recentSearches[index];
+        final item = controller.recentSearches[index];
         return RecentSearchItem(
           text: item,
-          onRemove: () {
-            setState(() {
-              _recentSearches.removeAt(index);
-            });
-          },
+          onRemove: () => controller.recentSearches.removeAt(index),
         );
       },
     );
@@ -126,7 +82,8 @@ class SearchBarWithAction extends StatelessWidget {
             ),
             child: Row(
               children: [
-                Image.asset('assets/images/icon-search.png', width: 16, height: 16),
+                Image.asset('assets/images/icon-search.png',
+                    width: 16, height: 16),
                 const SizedBox(width: 8),
                 Expanded(
                   child: TextField(
@@ -169,7 +126,7 @@ class SearchBarWithAction extends StatelessWidget {
   }
 }
 
-// ✅ 최근 검색어 헤더 (제목 + 전체삭제)
+// ✅ 최근 검색어 헤더
 class _SearchHeader extends StatelessWidget {
   final VoidCallback onClearAll;
 
@@ -209,7 +166,7 @@ class _SearchHeader extends StatelessWidget {
   }
 }
 
-// ✅ 최근 검색어 아이템 위젯
+// ✅ 최근 검색어 아이템
 class RecentSearchItem extends StatelessWidget {
   final String text;
   final VoidCallback onRemove;

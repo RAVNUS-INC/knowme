@@ -19,7 +19,9 @@ class _AiAnalysisScreenState extends State<AiAnalysisScreen>
   @override
   void initState() {
     super.initState();
-    _analysisController = Get.put(AiAnalysisController());
+
+    // ✅ 수정된 부분: 주입받기
+    _analysisController = Get.find<AiAnalysisController>();
 
     _controller = AnimationController(
       vsync: this,

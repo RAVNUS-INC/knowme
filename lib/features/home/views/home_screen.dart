@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import '../controllers/home_controller.dart';
 import '../../../shared/widgets/base_scaffold.dart';
 
+
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 

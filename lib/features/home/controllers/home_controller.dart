@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../ai_analysis/views/ai_analysis_screen.dart';
+import '../../../routes/routes.dart';
 
 class HomeController extends GetxController {
   // 🔹 현재 카드 인덱스 (슬라이더)
@@ -77,6 +78,6 @@ class HomeController extends GetxController {
 
   // 🔸 AI 분석으로 이동
   void goToAiAnalysis() {
-    Get.to(() => const AiAnalysisScreen());
+    Get.toNamed(AppRoutes.aiAnalysis); // ✅ binding 적용됨
   }
 }

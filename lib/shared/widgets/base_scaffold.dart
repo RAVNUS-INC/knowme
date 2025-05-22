@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../features/home/views/home_screen.dart';
-import '../../../features/search/views/search_screen.dart';
+import '../../../routes/routes.dart'; // ✅ AppRoutes 사용
+// 홈, 검색 등 실제 페이지는 AppRoutes 통해 관리되므로 직접 import 불필요
 
 class BaseScaffold extends StatelessWidget {
   final Widget body;
@@ -51,7 +51,7 @@ class BaseScaffold extends StatelessWidget {
                 const SizedBox(width: 6),
                 GestureDetector(
                   onTap: () {
-                    Get.offAllNamed('/home');
+                    Get.offAllNamed(AppRoutes.home); // ✅ 이름기반 경로
                   },
                   child: Image.asset(
                     'assets/images/knowme.png',
@@ -65,7 +65,7 @@ class BaseScaffold extends StatelessWidget {
             Row(
               children: [
                 _AppIconButton('assets/images/Search.png', onTap: () {
-                  Get.to(() => const SearchScreen());
+                  Get.toNamed(AppRoutes.search); // ✅ binding 적용됨
                 }),
                 const SizedBox(width: 16),
                 _AppIconButton('assets/images/bell.png', onTap: () {
@@ -106,7 +106,7 @@ class BaseScaffold extends StatelessWidget {
             activeColor: activeColor,
             inactiveColor: inactiveColor,
             onTap: () {
-              if (currentIndex != 0) Get.offAllNamed('/post');
+              if (currentIndex != 0) Get.offAllNamed(AppRoutes.post); // ✅
             },
           ),
           _BottomNavItem(
@@ -116,7 +116,7 @@ class BaseScaffold extends StatelessWidget {
             activeColor: activeColor,
             inactiveColor: inactiveColor,
             onTap: () {
-              if (currentIndex != 1) Get.offAllNamed('/activity');
+              if (currentIndex != 1) Get.offAllNamed(AppRoutes.activity); // ✅
             },
           ),
           _BottomNavItem(
@@ -126,7 +126,7 @@ class BaseScaffold extends StatelessWidget {
             activeColor: activeColor,
             inactiveColor: inactiveColor,
             onTap: () {
-              if (currentIndex != 2) Get.offAllNamed('/recommendation');
+              if (currentIndex != 2) Get.offAllNamed(AppRoutes.recommendation); // ✅
             },
           ),
           _BottomNavItem(
@@ -136,7 +136,7 @@ class BaseScaffold extends StatelessWidget {
             activeColor: activeColor,
             inactiveColor: inactiveColor,
             onTap: () {
-              if (currentIndex != 3) Get.offAllNamed('/ai-analysis');
+              if (currentIndex != 3) Get.offAllNamed(AppRoutes.aiAnalysis); // ✅
             },
           ),
         ],
