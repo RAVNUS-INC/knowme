@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../controllers/home_controller.dart';
 import '../../../shared/widgets/base_scaffold.dart';
-import '../../ai_analysis/views/ai_analysis_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -12,7 +11,7 @@ class HomeScreen extends StatelessWidget {
     final controller = Get.find<HomeController>();
 
     return BaseScaffold(
-      currentIndex: 0, // ✅ 홈 탭 인덱스만 넘김 (onTap 제거)
+      currentIndex: 0,
       body: Container(
         width: double.infinity,
         color: const Color(0xFFFAFAFA),
@@ -26,28 +25,7 @@ class HomeScreen extends StatelessWidget {
               child: PageView.builder(
                 controller: controller.pageController,
                 itemCount: 3,
-                itemBuilder: (context, index) {
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8),
-                    child: Container(
-                      width: 300,
-                      height: 167,
-                      decoration: BoxDecoration(
-                        color: Colors.grey.shade300,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Center(
-                        child: Text(
-                          'Card ${index + 1}',
-                          style: const TextStyle(
-                            fontSize: 16,
-                            color: Colors.black54,
-                          ),
-                        ),
-                      ),
-                    ),
-                  );
-                },
+                itemBuilder: (context, index) => controller.buildPage(index),
               ),
             ),
 
@@ -75,24 +53,21 @@ class HomeScreen extends StatelessWidget {
 
             const SizedBox(height: 30),
 
-            // 🔹 아이콘 + 텍스트
+            // 🔹 아이콘 리스트
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 12),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: const [
-                  _IconLabelItem(imageName: '채용.png', label: '채용'),
-                  _IconLabelItem(imageName: '인턴.png', label: '인턴'),
-                  _IconLabelItem(imageName: '대외활동.png', label: '대외활동'),
-                  _IconLabelItem(imageName: '교육 강연.png', label: '교육/강연'),
-                  _IconLabelItem(imageName: '공모전.png', label: '공모전'),
-                ],
+                children: controller.iconItems.map((item) {
+                  return _IconLabelItem(
+                    imageName: item['image']!,
+                    label: item['label']!,
+                  );
+                }).toList(),
               ),
             ),
 
             const SizedBox(height: 24),
-
-            // 🔻 구분선
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Container(
@@ -104,10 +79,8 @@ class HomeScreen extends StatelessWidget {
 
             const SizedBox(height: 24),
 
-            // 🔻 안내 텍스트
             const Text(
               '내 활동 분석 리포트가 도착했어요',
-              textAlign: TextAlign.center,
               style: TextStyle(
                 color: Color(0xFF232323),
                 fontSize: 18,
@@ -119,98 +92,17 @@ class HomeScreen extends StatelessWidget {
 
             const SizedBox(height: 24),
 
-            // 🔲 흰색 컨테이너
-            Center(
-              child: Container(
-                width: 341,
-                height: 171,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: Row(
-                  children: [
-                    // 왼쪽
-                    Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.only(top: 16),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: const [
-                            Text(
-                              '이한양 님의 직무 적합도',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                color: Color(0xFF454C53),
-                                fontSize: 12,
-                                fontFamily: 'Pretendard',
-                                fontWeight: FontWeight.w500,
-                                letterSpacing: -0.48,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
+            _analysisReportBox(),
 
-                    // 구분선
-                    Container(
-                      width: 1,
-                      margin: const EdgeInsets.symmetric(vertical: 24),
-                      color: Color(0xFFE5E5E5),
-                    ),
-
-                    // 오른쪽
-                    Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.only(top: 16),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: const [
-                            Text(
-                              '추천 활동',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                color: Color(0xFF454C53),
-                                fontSize: 12,
-                                fontFamily: 'Pretendard',
-                                fontWeight: FontWeight.w500,
-                                letterSpacing: -0.48,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-
-            // 🔽 회색 바
-            const SizedBox(height: 0),
-            Container(
-              width: 311,
-              height: 15,
-              decoration: const BoxDecoration(
-                color: Color(0xFFE5E5E5),
-                borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(8),
-                  bottomRight: Radius.circular(8),
-                ),
-              ),
-            ),
             const SizedBox(height: 30),
 
             // AI 분석 버튼
             GestureDetector(
-              onTap: () {
-                Get.to(() => const AiAnalysisScreen());
-              },
+              onTap: controller.goToAiAnalysis,
               child: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 13),
                 decoration: ShapeDecoration(
-                  color: Color(0xFFF5F5F5),
+                  color: const Color(0xFFF5F5F5),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(100),
                   ),
@@ -225,17 +117,11 @@ class HomeScreen extends StatelessWidget {
                 ),
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Image.asset(
-                      'assets/images/icon-ai.png',
-                      width: 16,
-                      height: 16,
-                    ),
+                    Image.asset('assets/images/icon-ai.png', width: 16, height: 16),
                     const SizedBox(width: 8),
                     const Text(
                       'AI분석 바로가기',
-                      textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Color(0xFF0068E5),
                         fontSize: 12,
@@ -245,11 +131,7 @@ class HomeScreen extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(width: 8),
-                    const Icon(
-                      Icons.chevron_right,
-                      size: 18,
-                      color: Color(0xFF0068E5),
-                    ),
+                    const Icon(Icons.chevron_right, size: 18, color: Color(0xFF0068E5)),
                   ],
                 ),
               ),
@@ -259,6 +141,85 @@ class HomeScreen extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+
+  Widget _analysisReportBox() {
+    return Column(
+      children: [
+        Center(
+          child: Container(
+            width: 341,
+            height: 171,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: Row(
+              children: [
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 16),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: const [
+                        Text(
+                          '이한양 님의 직무 적합도',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: Color(0xFF454C53),
+                            fontSize: 12,
+                            fontFamily: 'Pretendard',
+                            fontWeight: FontWeight.w500,
+                            letterSpacing: -0.48,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Container(
+                  width: 1,
+                  margin: const EdgeInsets.symmetric(vertical: 24),
+                  color: const Color(0xFFE5E5E5),
+                ),
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 16),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: const [
+                        Text(
+                          '추천 활동',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: Color(0xFF454C53),
+                            fontSize: 12,
+                            fontFamily: 'Pretendard',
+                            fontWeight: FontWeight.w500,
+                            letterSpacing: -0.48,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+        Container(
+          width: 311,
+          height: 15,
+          decoration: const BoxDecoration(
+            color: Color(0xFFE5E5E5),
+            borderRadius: BorderRadius.only(
+              bottomLeft: Radius.circular(8),
+              bottomRight: Radius.circular(8),
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
@@ -276,15 +237,10 @@ class _IconLabelItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Image.asset(
-          'assets/images/$imageName',
-          width: 40,
-          height: 40,
-        ),
+        Image.asset('assets/images/$imageName', width: 40, height: 40),
         const SizedBox(height: 6),
         Text(
           label,
-          textAlign: TextAlign.center,
           style: const TextStyle(
             color: Color(0xFF454C53),
             fontSize: 10,

@@ -1,18 +1,45 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../ai_analysis/views/ai_analysis_screen.dart';
 
 class HomeController extends GetxController {
-  // 현재 페이지 인덱스 (반응형)
+  // 🔹 현재 카드 인덱스 (슬라이더)
   final RxInt currentPage = 0.obs;
 
-  // 카드 슬라이더 제어용 PageController
+  // 🔹 PageController
   final PageController pageController = PageController(viewportFraction: 0.85);
+
+  // 🔹 아이콘 목록
+  final List<Map<String, String>> iconItems = const [
+    {'image': '채용.png', 'label': '채용'},
+    {'image': '인턴.png', 'label': '인턴'},
+    {'image': '대외활동.png', 'label': '대외활동'},
+    {'image': '교육 강연.png', 'label': '교육/강연'},
+    {'image': '공모전.png', 'label': '공모전'},
+  ];
+  Widget buildPage(int index) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 8),
+      child: Container(
+        width: 300,
+        height: 167,
+        decoration: BoxDecoration(
+          color: Colors.grey.shade300,
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: Center(
+          child: Text(
+            'Card ${index + 1}',
+            style: const TextStyle(fontSize: 16, color: Colors.black54),
+          ),
+        ),
+      ),
+    );
+  }
 
   @override
   void onInit() {
     super.onInit();
-
-    // PageView가 움직이면 currentPage 업데이트
     pageController.addListener(() {
       final page = pageController.page?.round() ?? 0;
       if (currentPage.value != page) {
@@ -25,5 +52,31 @@ class HomeController extends GetxController {
   void onClose() {
     pageController.dispose();
     super.onClose();
+  }
+
+  // 🔸 슬라이더 아이템 생성
+  Widget buildSliderCard(int index) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 8),
+      child: Container(
+        width: 300,
+        height: 167,
+        decoration: BoxDecoration(
+          color: Colors.grey.shade300,
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: Center(
+          child: Text(
+            'Card ${index + 1}',
+            style: const TextStyle(fontSize: 16, color: Colors.black54),
+          ),
+        ),
+      ),
+    );
+  }
+
+  // 🔸 AI 분석으로 이동
+  void goToAiAnalysis() {
+    Get.to(() => const AiAnalysisScreen());
   }
 }
