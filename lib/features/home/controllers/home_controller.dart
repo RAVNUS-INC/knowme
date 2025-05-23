@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../ai_analysis/views/ai_analysis_screen.dart';
 import '../../../routes/routes.dart';
 
 class HomeController extends GetxController {
