@@ -76,7 +76,6 @@ class _AiAnalysisScreenState extends State<AiAnalysisScreen>
               child: Container(height: 1, color: Color(0xFFE5E5E5)),
             ),
             const SizedBox(height: 120),
-
             SlideTransition(
               position: _offsetAnimation,
               child: Image.asset(
@@ -85,9 +84,7 @@ class _AiAnalysisScreenState extends State<AiAnalysisScreen>
                 fit: BoxFit.contain,
               ),
             ),
-
             const SizedBox(height: 30),
-
             if (_showDetails) ...[
               const Text(
                 '내 활동에 기록된 내용으로\nKnowMe AI가 취업 정보를 \n제공합니다',
@@ -100,9 +97,7 @@ class _AiAnalysisScreenState extends State<AiAnalysisScreen>
                   letterSpacing: -0.56,
                 ),
               ),
-
               const SizedBox(height: 102),
-
               GestureDetector(
                 onTap: _analysisController.startAnalysis,
                 child: Container(
@@ -126,9 +121,7 @@ class _AiAnalysisScreenState extends State<AiAnalysisScreen>
                   ),
                 ),
               ),
-
               const SizedBox(height: 12),
-
               GestureDetector(
                 onTap: _analysisController.viewPreviousResult,
                 child: Container(

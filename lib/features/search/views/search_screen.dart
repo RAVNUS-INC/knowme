@@ -18,11 +18,11 @@ class SearchScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Obx(() => SearchBarWithAction(
-              controller: controller.searchController,
-              isSearching: controller.isSearching.value,
-              onSearch: controller.handleSearch,
-              onCancel: () => Navigator.pop(context),
-            )),
+                  controller: controller.searchController,
+                  isSearching: controller.isSearching.value,
+                  onSearch: controller.handleSearch,
+                  onCancel: () => Navigator.pop(context),
+                )),
             const SizedBox(height: 20),
             _SearchHeader(onClearAll: controller.clearRecentSearches),
             const SizedBox(height: 6),

@@ -10,6 +10,7 @@ import '../features/home/views/home_screen.dart';
 import '../features/ai_analysis/controllers/ai_analysis_controller.dart';
 import '../features/search/controllers/search_controller.dart';
 import '../features/search/views/search_screen.dart';
+
 class AppRoutes {
   static const String login = '/login';
   static const String signupFirst = '/signup/first';
@@ -19,13 +20,11 @@ class AppRoutes {
   static const String findIdPasswd = '/find-id-passwd';
   static const String search = '/search';
 
-
   // ✅ 새 라우트 추가
   static const String post = '/post';
   static const String activity = '/activity';
   static const String recommendation = '/recommendation';
   static const String aiAnalysis = '/ai-analysis';
-
 
   static final routes = [
     GetPage(
@@ -61,7 +60,6 @@ class AppRoutes {
       }),
       transition: Transition.fadeIn,
     ),
-
     GetPage(
       name: AppRoutes.aiAnalysis,
       page: () => const AiAnalysisScreen(),
@@ -70,7 +68,6 @@ class AppRoutes {
       }),
       transition: Transition.fadeIn,
     ),
-
     GetPage(
       name: AppRoutes.search,
       page: () => const SearchScreen(),
@@ -79,6 +76,5 @@ class AppRoutes {
       }),
       transition: Transition.fadeIn,
     ),
-
   ];
 }
