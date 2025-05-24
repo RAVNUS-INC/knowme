@@ -69,7 +69,7 @@ class _ActivityScreenState extends State<ActivityScreen> {
     return BaseScaffold(
       currentIndex: 1,
       body: Container(
-        color: _c.gray50,
+        color: const Color(0xFFF8FAFC),
         child: Column(
           children: [
             _tagFilterRow(),
