@@ -8,4 +8,8 @@ class LoginModel {
     this.password = '',
     this.rememberAccount = false,
   });
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> upstream/main

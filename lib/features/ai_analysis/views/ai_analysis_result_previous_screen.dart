@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../shared/widgets/base_scaffold.dart';
+<<<<<<< HEAD
 import 'package:knowme_frontend/features/ai_analysis/controllers/previous_result_controller.dart';
+=======
+import '../controllers/previous_result_controller.dart';
+>>>>>>> upstream/main
 
 class AiAnalysisResultPreviousScreen extends StatelessWidget {
   const AiAnalysisResultPreviousScreen({super.key});
@@ -31,6 +35,7 @@ class AiAnalysisResultPreviousScreen extends StatelessWidget {
 
             // 🔁 분석 카드 리스트 (컨트롤러 사용)
             Obx(() => Column(
+<<<<<<< HEAD
               children: controller.previousResults.map((result) {
                 return AnalysisResultCard(
                   date: result['date']!,
@@ -38,6 +43,15 @@ class AiAnalysisResultPreviousScreen extends StatelessWidget {
                 );
               }).toList(),
             )),
+=======
+                  children: controller.previousResults.map((result) {
+                    return AnalysisResultCard(
+                      date: result['date']!,
+                      recordInfo: result['record']!,
+                    );
+                  }).toList(),
+                )),
+>>>>>>> upstream/main
           ],
         ),
       ),
@@ -109,4 +123,8 @@ class AnalysisResultCard extends StatelessWidget {
       ),
     );
   }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> upstream/main

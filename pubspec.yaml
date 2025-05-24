@@ -19,7 +19,11 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
+<<<<<<< HEAD
   sdk: ^3.7.2
+=======
+  sdk: '>=3.4.1 <4.0.0'
+>>>>>>> upstream/main
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -30,6 +34,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+<<<<<<< HEAD
   get: ^4.6.5
   logger: ^2.0.2
 
@@ -38,17 +43,36 @@ dependencies:
   cupertino_icons: ^1.0.8
   google_fonts: ^6.1.0
   intl: ^0.19.0
+=======
+  logger: ^2.0.2
+
+
+
+  # The following adds the Cupertino Icons font to your application.
+  # Use with the CupertinoIcons class for iOS style icons.
+  cupertino_icons: ^1.0.6
+  get: ^4.7.2
+>>>>>>> upstream/main
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+<<<<<<< HEAD
+=======
+  flutter_svg: ^2.0.7
+
+>>>>>>> upstream/main
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
+<<<<<<< HEAD
   flutter_lints: ^5.0.0
+=======
+  flutter_lints: ^3.0.0
+>>>>>>> upstream/main
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -62,6 +86,7 @@ flutter:
   uses-material-design: true
   assets:
     - assets/images/
+<<<<<<< HEAD
   fonts:
     - family: Pretendard
       fonts:
@@ -80,6 +105,8 @@ flutter:
         - asset : assets/fonts/Pretendard-Black.ttf
           weight: 900
 
+=======
+>>>>>>> upstream/main
 
   # To add assets to your application, add an assets section, like this:
   # assets:
@@ -87,10 +114,17 @@ flutter:
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
+<<<<<<< HEAD
   # https://flutter.dev/to/resolution-aware-images
 
   # For details regarding adding assets from package dependencies, see
   # https://flutter.dev/to/asset-from-package
+=======
+  # https://flutter.dev/assets-and-images/#resolution-aware
+
+  # For details regarding adding assets from package dependencies, see
+  # https://flutter.dev/assets-and-images/#from-packages
+>>>>>>> upstream/main
 
   # To add custom fonts to your application, add a fonts section here,
   # in this "flutter" section. Each entry in this list should have a
@@ -110,5 +144,9 @@ flutter:
   #         weight: 700
   #
   # For details regarding fonts from package dependencies,
+<<<<<<< HEAD
   # see https://flutter.dev/to/font-from-package
 
+=======
+  # see https://flutter.dev/custom-fonts/#from-packages
+>>>>>>> upstream/main

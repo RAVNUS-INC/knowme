@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
+<<<<<<< HEAD
 import 'features/activity/views/activity_screen.dart';
 import 'features/membership/views/profile_screen.dart';
 import 'features/home/views/notification_screen.dart';
 import 'routes/routes.dart';
 import 'package:get/get.dart';
+=======
+import 'package:get/get.dart';
+import '../routes/routes.dart';
+>>>>>>> upstream/main
 
 void main() {
   runApp(const MyApp());
@@ -15,6 +20,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+<<<<<<< HEAD
       title: 'Know Me',
       debugShowCheckedModeBanner: false,
       getPages: AppRoutes.routes,
@@ -39,6 +45,16 @@ class TestHome extends StatelessWidget {
           child: const Text('프로필로 이동'),
         ),
       ),
+=======
+      title: 'My App',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+      ),
+      initialRoute: AppRoutes.login,
+      getPages: AppRoutes.routes,
+      debugShowCheckedModeBanner: false,
+>>>>>>> upstream/main
     );
   }
 }

@@ -6,6 +6,7 @@ import '../features/membership/views/signup_firstpage.dart';
 import '../features/membership/views/signup_secondpage.dart';
 import '../features/membership/views/signup_thirdpage.dart';
 import '../features/membership/views/find_id_passwd.dart';
+<<<<<<< HEAD
 import '../features/membership/views/profile_screen.dart';
 import '../features/home/views/home_screen.dart';
 import '../features/home/views/notification_screen.dart';
@@ -14,6 +15,12 @@ import '../features/search/controllers/search_controller.dart';
 import '../features/search/views/search_screen.dart';
 import '../features/activity/views/activity_screen.dart';
 import '../main.dart';
+=======
+import '../features/home/views/home_screen.dart';
+import '../features/ai_analysis/controllers/ai_analysis_controller.dart';
+import '../features/search/controllers/search_controller.dart';
+import '../features/search/views/search_screen.dart';
+>>>>>>> upstream/main
 
 class AppRoutes {
   static const String login = '/login';
@@ -29,10 +36,13 @@ class AppRoutes {
   static const String activity = '/activity';
   static const String recommendation = '/recommendation';
   static const String aiAnalysis = '/ai-analysis';
+<<<<<<< HEAD
   static const String profile = '/profile';
   static const String testHome = '/';
   static const String notification = '/notification';
   static const String activityDetail = '/activity-detail';
+=======
+>>>>>>> upstream/main
 
   static final routes = [
     GetPage(
@@ -41,6 +51,7 @@ class AppRoutes {
       transition: Transition.fadeIn,
     ),
     GetPage(
+<<<<<<< HEAD
       name: AppRoutes.profile,
       page: () => const ProfileScreen(),
       transition: Transition.fadeIn,
@@ -51,6 +62,8 @@ class AppRoutes {
       transition: Transition.fadeIn,
     ),
     GetPage(
+=======
+>>>>>>> upstream/main
       name: signupFirst,
       page: () => const SignupFirstPage(),
       transition: Transition.rightToLeft,
@@ -87,11 +100,14 @@ class AppRoutes {
       transition: Transition.fadeIn,
     ),
     GetPage(
+<<<<<<< HEAD
       name: AppRoutes.notification,
       page: () => const NotificationScreen(),
       transition: Transition.rightToLeft,
     ),
     GetPage(
+=======
+>>>>>>> upstream/main
       name: AppRoutes.search,
       page: () => const SearchScreen(),
       binding: BindingsBuilder(() {
@@ -99,6 +115,7 @@ class AppRoutes {
       }),
       transition: Transition.fadeIn,
     ),
+<<<<<<< HEAD
     GetPage(
       name: AppRoutes.activity,
       page: () => const ActivityScreen(),
@@ -107,3 +124,7 @@ class AppRoutes {
   ];
 }
 
+=======
+  ];
+}
+>>>>>>> upstream/main

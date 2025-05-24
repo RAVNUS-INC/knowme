@@ -10,4 +10,8 @@ class AiAnalysisController extends GetxController {
   void viewPreviousResult() {
     Get.to(() => const AiAnalysisResultPreviousScreen());
   }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> upstream/main

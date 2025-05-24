@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+<<<<<<< HEAD
 import 'package:knowme_frontend/routes/routes.dart'; // ✅ AppRoutes 사용
 // 홈, 검색 등 실제 페이지는 AppRoutes 통해 관리되므로 직접 import 불필요
 
@@ -11,39 +12,65 @@ class BaseScaffold extends StatelessWidget {
   final bool showBottomNavBar;
   final Widget? bottomNavigationBar;
   final bool showBottomBar;
+=======
+import '../../../routes/routes.dart'; // ✅ AppRoutes 사용
+// 홈, 검색 등 실제 페이지는 AppRoutes 통해 관리되므로 직접 import 불필요
+
+class BaseScaffold extends StatelessWidget {
+  final Widget body;
+  final int currentIndex;
+>>>>>>> upstream/main
 
   const BaseScaffold({
     super.key,
     required this.body,
     this.currentIndex = 0,
+<<<<<<< HEAD
     this.activeIcon,
     this.showBottomNavBar = true,
     this.bottomNavigationBar,
     this.showBottomBar = true,
+=======
+>>>>>>> upstream/main
   });
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+<<<<<<< HEAD
       backgroundColor: Colors.white,
+=======
+      backgroundColor: const Color(0xFFFDFDFD),
+>>>>>>> upstream/main
       body: Column(
         children: [
           _buildAppBar(),
           Expanded(child: body),
         ],
       ),
+<<<<<<< HEAD
       bottomNavigationBar:
       showBottomBar ? _buildBottomNavBar() : null,
+=======
+      bottomNavigationBar: _buildBottomNavBar(),
+>>>>>>> upstream/main
     );
   }
 
   Widget _buildAppBar() {
     return Container(
       width: double.infinity,
+<<<<<<< HEAD
       height: 110,
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
       decoration: const BoxDecoration(
         color: Colors.white,
+=======
+      height: 100,
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+      decoration: const BoxDecoration(
+        color: Color(0xCCF5F5F5),
+>>>>>>> upstream/main
         borderRadius: BorderRadius.only(
           bottomLeft: Radius.circular(16),
           bottomRight: Radius.circular(16),
@@ -65,12 +92,17 @@ class BaseScaffold extends StatelessWidget {
                   },
                   child: Image.asset(
                     'assets/images/knowme.png',
+<<<<<<< HEAD
                     width: 190,
+=======
+                    width: 100,
+>>>>>>> upstream/main
                     fit: BoxFit.contain,
                   ),
                 ),
               ],
             ),
+<<<<<<< HEAD
             const SizedBox(height: 10),
             // 오른쪽 아이콘
             Row(
@@ -101,6 +133,22 @@ class BaseScaffold extends StatelessWidget {
                     print('Profile tapped');
                   },
                 ),
+=======
+            // 오른쪽 아이콘
+            Row(
+              children: [
+                _AppIconButton('assets/images/Search.png', onTap: () {
+                  Get.toNamed(AppRoutes.search); // ✅ binding 적용됨
+                }),
+                const SizedBox(width: 16),
+                _AppIconButton('assets/images/bell.png', onTap: () {
+                  print('Bell tapped');
+                }),
+                const SizedBox(width: 16),
+                _AppIconButton('assets/images/User.png', onTap: () {
+                  print('Profile tapped');
+                }),
+>>>>>>> upstream/main
               ],
             ),
           ],
@@ -116,6 +164,7 @@ class BaseScaffold extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 14),
       decoration: const BoxDecoration(
+<<<<<<< HEAD
         color: Colors.white,
         boxShadow: [ // ✅ 스크롤 겹침 대비용 그림자 효과
           BoxShadow(
@@ -124,6 +173,13 @@ class BaseScaffold extends StatelessWidget {
             offset: Offset(0, -2),
           ),
         ],
+=======
+        color: Color(0xFFFDFDFD),
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(50),
+          topRight: Radius.circular(50),
+        ),
+>>>>>>> upstream/main
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -186,7 +242,11 @@ class _AppIconButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
+<<<<<<< HEAD
       child: Image.asset(assetPath, width: 28, height: 28, fit: BoxFit.contain),
+=======
+      child: Image.asset(assetPath, width: 24, height: 24, fit: BoxFit.contain),
+>>>>>>> upstream/main
     );
   }
 }
@@ -217,7 +277,11 @@ class _BottomNavItem extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
+<<<<<<< HEAD
           Image.asset(iconPath, width: 40, height: 40, color: color),
+=======
+          Image.asset(iconPath, width: 26, height: 26, color: color),
+>>>>>>> upstream/main
           const SizedBox(height: 4),
           Text(
             label,

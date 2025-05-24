@@ -68,4 +68,8 @@ class SignupFirstController extends GetxController {
         break;
     }
   }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> upstream/main

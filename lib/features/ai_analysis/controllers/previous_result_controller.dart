@@ -33,4 +33,8 @@ class PreviousResultController extends GetxController {
   }
 
 // 나중에 삭제/편집 등 추가 가능
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> upstream/main
