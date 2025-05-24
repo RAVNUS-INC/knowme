@@ -102,7 +102,6 @@ class HomeScreen extends StatelessWidget {
               child: Container(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 16, vertical: 13),
-
                 decoration: ShapeDecoration(
                   color: const Color(0xFFF5F5F5),
                   shape: RoundedRectangleBorder(

@@ -3,10 +3,9 @@ import 'package:get/get.dart';
 import 'package:knowme_frontend/routes/routes.dart'; // ✅ AppRoutes 사용
 import 'package:knowme_frontend/routes/routes.dart';
 
-
 class BaseScaffold extends StatelessWidget {
   final Widget body;
-  final int currentIndex;
+  final int? currentIndex;
   final String? activeIcon;
   final bool showBottomNavBar;
   final Widget? bottomNavigationBar;
@@ -15,7 +14,7 @@ class BaseScaffold extends StatelessWidget {
   const BaseScaffold({
     super.key,
     required this.body,
-    this.currentIndex = 0,
+    this.currentIndex,
     this.activeIcon,
     this.showBottomNavBar = true,
     this.bottomNavigationBar,
@@ -32,9 +31,7 @@ class BaseScaffold extends StatelessWidget {
           Expanded(child: body),
         ],
       ),
-
-      bottomNavigationBar:
-      showBottomBar ? _buildBottomNavBar() : null,
+      bottomNavigationBar: showBottomBar ? _buildBottomNavBar() : null,
     );
   }
 
@@ -45,7 +42,6 @@ class BaseScaffold extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
       decoration: const BoxDecoration(
         color: Colors.white,
-
         borderRadius: BorderRadius.only(
           bottomLeft: Radius.circular(16),
           bottomRight: Radius.circular(16),
@@ -68,7 +64,6 @@ class BaseScaffold extends StatelessWidget {
                   child: Image.asset(
                     'assets/images/knowme.png',
                     width: 190,
-
                     fit: BoxFit.contain,
                   ),
                 ),
@@ -121,7 +116,8 @@ class BaseScaffold extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 14),
       decoration: const BoxDecoration(
         color: Colors.white,
-        boxShadow: [ // ✅ 스크롤 겹침 대비용 그림자 효과
+        boxShadow: [
+          // ✅ 스크롤 겹침 대비용 그림자 효과
           BoxShadow(
             color: Colors.black12,
             blurRadius: 6,

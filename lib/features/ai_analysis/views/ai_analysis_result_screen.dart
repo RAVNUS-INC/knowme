@@ -8,10 +8,10 @@ class AiAnalysisResultScreen extends StatelessWidget {
   const AiAnalysisResultScreen({super.key});
 
   Widget get _verticalDivider => Container(
-    width: 1,
-    height: 60,
-    color: const Color(0xFFE5E5E5),
-  );
+        width: 1,
+        height: 60,
+        color: const Color(0xFFE5E5E5),
+      );
 
   Widget _section(String title, String content) {
     return Column(
@@ -173,7 +173,7 @@ class AiAnalysisResultScreen extends StatelessWidget {
                   ),
                   TextSpan(
                     text:
-                    ' 등을\n중심으로 판단해요.\n\n이런 기준에서 보완점을 조금만 더 채워넣으면 강한 인상을 줄 수 있습니다!',
+                        ' 등을\n중심으로 판단해요.\n\n이런 기준에서 보완점을 조금만 더 채워넣으면 강한 인상을 줄 수 있습니다!',
                     style: TextStyle(
                       color: Color(0xFF454C53),
                       fontSize: 14,

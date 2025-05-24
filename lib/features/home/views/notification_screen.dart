@@ -59,8 +59,8 @@ class NotificationScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BaseScaffold(
-      currentIndex: 1, // '내 활동' 탭 강조
       activeIcon: 'bell', // 상단 오른쪽 '알림' 아이콘 강조
+      showBottomBar: true,
       body: Container(
         color: Colors.grey[50],
         child: ListView.separated(
@@ -109,12 +109,14 @@ class NotificationScreen extends StatelessWidget {
                         const SizedBox(height: 4),
                         Text(
                           n.message,
-                          style: const TextStyle(fontSize: 14, color: Colors.black54),
+                          style: const TextStyle(
+                              fontSize: 14, color: Colors.black54),
                         ),
                         const SizedBox(height: 8),
                         Text(
                           n.date,
-                          style: const TextStyle(fontSize: 12, color: Colors.black45),
+                          style: const TextStyle(
+                              fontSize: 12, color: Colors.black45),
                         ),
                       ],
                     ),

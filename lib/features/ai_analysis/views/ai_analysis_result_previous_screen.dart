@@ -31,14 +31,13 @@ class AiAnalysisResultPreviousScreen extends StatelessWidget {
 
             // 🔁 분석 카드 리스트 (컨트롤러 사용)
             Obx(() => Column(
-
-              children: controller.previousResults.map((result) {
-                return AnalysisResultCard(
-                  date: result['date']!,
-                  recordInfo: result['record']!,
-                );
-              }).toList(),
-            )),
+                  children: controller.previousResults.map((result) {
+                    return AnalysisResultCard(
+                      date: result['date']!,
+                      recordInfo: result['record']!,
+                    );
+                  }).toList(),
+                )),
           ],
         ),
       ),

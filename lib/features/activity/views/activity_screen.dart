@@ -81,168 +81,168 @@ class _ActivityScreenState extends State<ActivityScreen> {
     );
   }
 
-
-
-
   Widget _tagFilterRow() => Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-      Padding(
-        padding: const EdgeInsets.symmetric(horizontal: _side),
-        child: Align(
-          alignment: Alignment.centerLeft,
-          child: Wrap(
-            spacing: 8,
-            runSpacing: 8,
-            children: [
-              GestureDetector(
-                onTap: () => setState(() => _selectedTag = null),
-                child: Image.asset(
-                  'assets/images/refresh.png',
-                  width: 26,
-                  height: 26,
-                ),
-              ),
-              ..._filterTags.map((tag) {
-                final sel = tag == _selectedTag;
-                return GestureDetector(
-                  onTap: () => setState(() => _selectedTag = sel ? null : tag),
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
-                    decoration: BoxDecoration(
-                      color: sel ? _c.primaryBlue : _c.gray100,
-                      borderRadius: BorderRadius.circular(18),
-                      border: Border.all(
-                        color: sel ? _c.primaryBlue : _c.gray200,
-                      ),
-                    ),
-                    child: Text(
-                      tag,
-                      style: GoogleFonts.notoSansKr(
-                        fontSize: 13,
-                        color: sel ? Colors.white : _c.gray700,
-                        fontWeight: sel ? FontWeight.w600 : FontWeight.normal,
-                      ),
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: _side),
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: Wrap(
+                spacing: 8,
+                runSpacing: 8,
+                children: [
+                  GestureDetector(
+                    onTap: () => setState(() => _selectedTag = null),
+                    child: Image.asset(
+                      'assets/images/refresh.png',
+                      width: 26,
+                      height: 26,
                     ),
                   ),
-                );
-              }).toList(),
-            ],
-          ),
-        ),
-      ),
-
-      const SizedBox(height: 16),
-    ],
-  );
-
-  Widget _projectList() => Expanded(
-    child: ListView.separated(
-      padding: const EdgeInsets.symmetric(horizontal: _side),
-      itemCount: _visible.length+1,
-      separatorBuilder: (_, i) => const SizedBox(height: 12),
-      itemBuilder: (_, i) {
-        if (i == _visible.length) {
-          return Padding(
-            padding: const EdgeInsets.only(top: 12, bottom: 20),
-            child: GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (_) => const ActivityAddScreen()),
-                );
-              },
-              child: Center(
-                child: Image.asset(
-                  'assets/images/btn-rounded.png',
-                  width: 80,
-                  height: 80,
-                  fit: BoxFit.contain,
-                ),
+                  ..._filterTags.map((tag) {
+                    final sel = tag == _selectedTag;
+                    return GestureDetector(
+                      onTap: () =>
+                          setState(() => _selectedTag = sel ? null : tag),
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 14, vertical: 6),
+                        decoration: BoxDecoration(
+                          color: sel ? _c.primaryBlue : _c.gray100,
+                          borderRadius: BorderRadius.circular(18),
+                          border: Border.all(
+                            color: sel ? _c.primaryBlue : _c.gray200,
+                          ),
+                        ),
+                        child: Text(
+                          tag,
+                          style: GoogleFonts.notoSansKr(
+                            fontSize: 13,
+                            color: sel ? Colors.white : _c.gray700,
+                            fontWeight:
+                                sel ? FontWeight.w600 : FontWeight.normal,
+                          ),
+                        ),
+                      ),
+                    );
+                  }).toList(),
+                ],
               ),
             ),
-          );
-        }
-
-        final p = _visible[i];
-        return GestureDetector(
-          onTap: () async {
-            final deleted = await Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (_) => ActivityDetailScreen(project: p),
-              ),
-            );
-
-          if (deleted != null && deleted is Project) {
-            setState(() {
-              _projects.remove(deleted);
-            });
-          }
-        },
-        child: Container(
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(12),
-            border: Border.all(color: _c.gray200),
           ),
-          padding: const EdgeInsets.all(16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                  p.title,
-                  style: GoogleFonts.notoSansKr(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w700,
-                    color: _c.gray700,
+          const SizedBox(height: 16),
+        ],
+      );
+
+  Widget _projectList() => Expanded(
+        child: ListView.separated(
+          padding: const EdgeInsets.symmetric(horizontal: _side),
+          itemCount: _visible.length + 1,
+          separatorBuilder: (_, i) => const SizedBox(height: 12),
+          itemBuilder: (_, i) {
+            if (i == _visible.length) {
+              return Padding(
+                padding: const EdgeInsets.only(top: 12, bottom: 20),
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (_) => const ActivityAddScreen()),
+                    );
+                  },
+                  child: Center(
+                    child: Image.asset(
+                      'assets/images/btn-rounded.png',
+                      width: 80,
+                      height: 80,
+                      fit: BoxFit.contain,
+                    ),
                   ),
                 ),
-              Container(
-                width: double.infinity,
-                height: 0.8,
-                color: _c.gray200,
-              ),
-              const SizedBox(height: 4),
-              Text(
-                p.description,
-                style: GoogleFonts.notoSansKr(
-                  fontSize: 13,
-                  fontWeight: FontWeight.w500,
-                  color: Colors.black,
+              );
+            }
+
+            final p = _visible[i];
+            return GestureDetector(
+              onTap: () async {
+                final deleted = await Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => ActivityDetailScreen(project: p),
+                  ),
+                );
+
+                if (deleted != null && deleted is Project) {
+                  setState(() {
+                    _projects.remove(deleted);
+                  });
+                }
+              },
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(12),
+                  border: Border.all(color: _c.gray200),
                 ),
-              ),
-              const SizedBox(height: 8),
-              Wrap(
-                spacing: 6,
-                runSpacing: 4,
-                children: p.tags
-                    .map((t) => Chip(
-                      label: Text(
-                        t,
-                        style: GoogleFonts.notoSansKr(fontSize: 12),
+                padding: const EdgeInsets.all(16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      p.title,
+                      style: GoogleFonts.notoSansKr(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w700,
+                        color: _c.gray700,
                       ),
-                      backgroundColor: _c.gray100,
-                      visualDensity: VisualDensity.compact,
-                      side: BorderSide.none,
-                    ))
-                    .toList(),
-              ),
-              const SizedBox(height: 10),
-              Text(
-                p.date,
-                style: GoogleFonts.notoSansKr(
-                  fontSize: 12,
-                  color: _c.gray400,
+                    ),
+                    Container(
+                      width: double.infinity,
+                      height: 0.8,
+                      color: _c.gray200,
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      p.description,
+                      style: GoogleFonts.notoSansKr(
+                        fontSize: 13,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.black,
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    Wrap(
+                      spacing: 6,
+                      runSpacing: 4,
+                      children: p.tags
+                          .map((t) => Chip(
+                                label: Text(
+                                  t,
+                                  style: GoogleFonts.notoSansKr(fontSize: 12),
+                                ),
+                                backgroundColor: _c.gray100,
+                                visualDensity: VisualDensity.compact,
+                                side: BorderSide.none,
+                              ))
+                          .toList(),
+                    ),
+                    const SizedBox(height: 10),
+                    Text(
+                      p.date,
+                      style: GoogleFonts.notoSansKr(
+                        fontSize: 12,
+                        color: _c.gray400,
+                      ),
+                    ),
+                  ],
                 ),
               ),
-            ],
-          ),
+            );
+          },
         ),
-        );
-      },
-    ),
-  );
+      );
 }
 
 class Project {
@@ -270,8 +270,6 @@ class _c {
   static const gray500 = Color(0xFF64748B);
   static const gray700 = Color(0xFF334155);
 }
-
-
 
 ///상세페이지
 class ActivityDetailScreen extends StatelessWidget {
@@ -322,10 +320,10 @@ class ActivityDetailScreen extends StatelessWidget {
                         spacing: 6,
                         children: project.tags
                             .map((tag) => Chip(
-                          label: Text(tag),
-                          backgroundColor: _c.gray100,
-                          side: BorderSide.none,
-                        ))
+                                  label: Text(tag),
+                                  backgroundColor: _c.gray100,
+                                  side: BorderSide.none,
+                                ))
                             .toList(),
                       ),
                       const SizedBox(height: 20),
@@ -362,23 +360,24 @@ class ActivityDetailScreen extends StatelessWidget {
 
             // 🔽 요약 ~ 링크 ~ 파일 이미지들
             Divider(thickness: 3, color: Colors.grey[50], height: 20),
-            Image.asset('assets/images/summation.png', height: 190, fit: BoxFit.contain),
+            Image.asset('assets/images/summation.png',
+                height: 190, fit: BoxFit.contain),
             const SizedBox(height: 8),
 
             Divider(thickness: 3, color: Colors.grey[50], height: 20),
-            Image.asset('assets/images/activity-link.png', height: 190, fit: BoxFit.contain),
+            Image.asset('assets/images/activity-link.png',
+                height: 190, fit: BoxFit.contain),
 
             Divider(thickness: 3, color: Colors.grey[50], height: 20),
             const SizedBox(height: 16),
-            Image.asset('assets/images/activity-file.png', height: 190, fit: BoxFit.contain),
+            Image.asset('assets/images/activity-file.png',
+                height: 190, fit: BoxFit.contain),
           ],
         ),
       ),
     );
   }
 }
-
-
 
 ///팝업 위젯
 Future<void> _showDeleteDialog(BuildContext context, Project project) async {
@@ -468,10 +467,10 @@ class _MenuPopup extends StatelessWidget {
                   MaterialPageRoute(
                     builder: (_) => AddProjectPage(
                       project: project, // 수정할 데이터 전달
-                      isEdit: true,     // 수정모드라는 플래그 전달
+                      isEdit: true, // 수정모드라는 플래그 전달
                     ),
                   ),
-                );// 팝업 닫고
+                ); // 팝업 닫고
                 // TODO: 수정 화면 이동
               },
               child: Row(
@@ -490,7 +489,8 @@ class _MenuPopup extends StatelessWidget {
             // 활동 삭제하기
             GestureDetector(
               onTap: () async {
-                await _showDeleteDialog(context, project); // ← project 삭제 요청 보내기
+                await _showDeleteDialog(
+                    context, project); // ← project 삭제 요청 보내기
               },
               child: Row(
                 children: [
@@ -510,8 +510,6 @@ class _MenuPopup extends StatelessWidget {
   }
 }
 
-
-
 ///활동 수정 페이지
 class AddProjectPage extends StatefulWidget {
   final Project? project;
@@ -524,7 +522,6 @@ class AddProjectPage extends StatefulWidget {
 }
 
 class _AddProjectPageState extends State<AddProjectPage> {
-
   void _showCancelDialog(BuildContext context) {
     showDialog(
       context: context,
@@ -547,14 +544,13 @@ class _AddProjectPageState extends State<AddProjectPage> {
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 24),
-
               Row(
                 children: [
                   Expanded(
                     child: OutlinedButton(
                       onPressed: () {
-                        Navigator.of(context).pop();     // 다이얼로그 닫기
-                        Navigator.of(context).pop();     // 수정 페이지 나가기
+                        Navigator.of(context).pop(); // 다이얼로그 닫기
+                        Navigator.of(context).pop(); // 수정 페이지 나가기
                       },
                       style: OutlinedButton.styleFrom(
                         side: const BorderSide(color: Colors.blueAccent),
@@ -698,7 +694,6 @@ class _AddProjectPageState extends State<AddProjectPage> {
             ),
             const SizedBox(height: 80),
 
-
             // ✅ 하단 버튼 직접 배치
             Container(
               color: Colors.grey[50],
@@ -726,8 +721,7 @@ class _AddProjectPageState extends State<AddProjectPage> {
                       child: const Text(
                         '취소',
                         style: TextStyle(
-                            color: Colors.black54,
-                            fontWeight: FontWeight.w600),
+                            color: Colors.black54, fontWeight: FontWeight.w600),
                       ),
                     ),
                   ),
@@ -741,19 +735,23 @@ class _AddProjectPageState extends State<AddProjectPage> {
   }
 
   Widget _section(String t) => Text(
-    t,
-    style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w700, color: Colors.blueAccent),
-  );
+        t,
+        style: const TextStyle(
+            fontSize: 15,
+            fontWeight: FontWeight.w700,
+            color: Colors.blueAccent),
+      );
 
   Widget _outlined(TextEditingController ctl, String hint,
-      {int maxLines = 1, EdgeInsets? contentPadding}) =>
+          {int maxLines = 1, EdgeInsets? contentPadding}) =>
       TextField(
         controller: ctl,
         maxLines: maxLines,
         decoration: InputDecoration(
           hintText: hint,
           isDense: true,
-          contentPadding: contentPadding ?? const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+          contentPadding: contentPadding ??
+              const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
           border: OutlineInputBorder(borderRadius: BorderRadius.circular(6)),
         ),
       );
@@ -761,24 +759,23 @@ class _AddProjectPageState extends State<AddProjectPage> {
   Widget _divider() => const Divider(height: 1, color: Colors.grey);
 
   Widget _linkRow(String label, {IconData icon = Icons.link_outlined}) => Row(
-    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-    children: [
-      Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Icon(icon, color: Colors.blueAccent),
-          const SizedBox(width: 8),
-          Text(label),
+          Row(
+            children: [
+              Icon(icon, color: Colors.blueAccent),
+              const SizedBox(width: 8),
+              Text(label),
+            ],
+          ),
+          IconButton(
+            icon:
+                const Icon(Icons.add_circle_outline, color: Colors.blueAccent),
+            onPressed: () {},
+          ),
         ],
-      ),
-      IconButton(
-        icon: const Icon(Icons.add_circle_outline, color: Colors.blueAccent),
-        onPressed: () {},
-      ),
-    ],
-  );
+      );
 }
-
-
 
 ///활동 추가 페이지
 class ActivityAddScreen extends StatelessWidget {
@@ -935,8 +932,7 @@ class ActivityAddScreen extends StatelessWidget {
                   Expanded(
                     child: ElevatedButton(
                       onPressed: () {
-                        Navigator.of(context)
-                          ..pop(); // 다이얼로그 닫기
+                        Navigator.of(context)..pop(); // 다이얼로그 닫기
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: const Color(0xFF0066FF),
@@ -965,56 +961,62 @@ class ActivityAddScreen extends StatelessWidget {
   }
 }
 
-  Widget _sectionTitle(String title) => Padding(
-    padding: const EdgeInsets.only(bottom: 8),
-    child: Text(
-      title,
-      style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.blue),
-    ),
-  );
+Widget _sectionTitle(String title) => Padding(
+      padding: const EdgeInsets.only(bottom: 8),
+      child: Text(
+        title,
+        style: const TextStyle(
+            fontSize: 16, fontWeight: FontWeight.bold, color: Colors.blue),
+      ),
+    );
 
-  Widget _textField(String hint) => TextField(
-    decoration: InputDecoration(
-      hintText: hint,
-      border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
-      isDense: true,
-      contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
-    ),
-  );
+Widget _textField(String hint) => TextField(
+      decoration: InputDecoration(
+        hintText: hint,
+        border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
+        isDense: true,
+        contentPadding:
+            const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+      ),
+    );
 
-  Widget _iconRow(IconData icon) => Row(
-    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-    children: [
-      Icon(icon, size: 24, color: Colors.blue),
-      IconButton(
-        icon: const Icon(Icons.add, color: Colors.blue),
+Widget _iconRow(IconData icon) => Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Icon(icon, size: 24, color: Colors.blue),
+        IconButton(
+          icon: const Icon(Icons.add, color: Colors.blue),
+          onPressed: () {},
+        )
+      ],
+    );
+
+Widget _blueButton(String label) => SizedBox(
+      width: double.infinity,
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: Colors.blue,
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+          padding: const EdgeInsets.symmetric(vertical: 16),
+        ),
         onPressed: () {},
-      )
-    ],
-  );
-
-  Widget _blueButton(String label) => SizedBox(
-    width: double.infinity,
-    child: ElevatedButton(
-      style: ElevatedButton.styleFrom(
-        backgroundColor: Colors.blue,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-        padding: const EdgeInsets.symmetric(vertical: 16),
+        child: Text(label,
+            style: const TextStyle(fontSize: 16, color: Colors.white)),
       ),
-      onPressed: () {},
-      child: Text(label, style: const TextStyle(fontSize: 16, color: Colors.white)),
-    ),
-  );
+    );
 
-  Widget _grayButton(String label, VoidCallback onTap) => SizedBox(
-    width: double.infinity,
-    child: OutlinedButton(
-      style: OutlinedButton.styleFrom(
-        backgroundColor: Colors.grey[300],
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-        padding: const EdgeInsets.symmetric(vertical: 16),
+Widget _grayButton(String label, VoidCallback onTap) => SizedBox(
+      width: double.infinity,
+      child: OutlinedButton(
+        style: OutlinedButton.styleFrom(
+          backgroundColor: Colors.grey[300],
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+          padding: const EdgeInsets.symmetric(vertical: 16),
+        ),
+        onPressed: onTap,
+        child: Text(label,
+            style: const TextStyle(fontSize: 16, color: Colors.black)),
       ),
-      onPressed: onTap,
-      child: Text(label, style: const TextStyle(fontSize: 16, color: Colors.black)),
-    ),
-  );
+    );
