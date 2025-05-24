@@ -160,13 +160,12 @@ class ProfileScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                 Text('고객지원',
+                Text('고객지원',
                     style:
                         TextStyle(fontWeight: FontWeight.bold, fontSize: 13)),
                 SizedBox(height: 4),
                 Text('tel: 02-000-0000', style: TextStyle(fontSize: 12)),
-                Text('email : help@knowme.com',
-                    style: TextStyle(fontSize: 12)),
+                Text('email : help@knowme.com', style: TextStyle(fontSize: 12)),
                 Text('주소', style: TextStyle(fontSize: 12)),
               ],
             ),
@@ -293,8 +292,8 @@ class MembershipScreen extends StatelessWidget {
                         widthFactor: 0.85,
                         child: Container(
                           decoration: BoxDecoration(
-                            border:
-                                Border.all(color: const Color(0xFF0066FF), width: 2),
+                            border: Border.all(
+                                color: const Color(0xFF0066FF), width: 2),
                             borderRadius: BorderRadius.circular(8),
                           ),
                           child: Stack(
