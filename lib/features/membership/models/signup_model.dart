@@ -100,8 +100,4 @@ class SignupModel {
       'marketingConsent': agreeToMarketingInfo,
     };
   }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> upstream/main

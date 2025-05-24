@@ -132,11 +132,7 @@ class SignupSecondPage extends StatelessWidget {
                               horizontal: 12, vertical: 14),
                           suffixIcon: controller.signupModel.isIdValid
                               ? const Icon(Icons.check_circle,
-<<<<<<< HEAD
-                              color: Colors.blue)
-=======
                                   color: Colors.blue)
->>>>>>> upstream/main
                               : null,
                         ),
                         keyboardType: TextInputType.text,
@@ -253,11 +249,7 @@ class SignupSecondPage extends StatelessWidget {
                       builder: (controller) => TextField(
                         controller: controller.passwordConfirmController,
                         obscureText:
-<<<<<<< HEAD
-                        !controller.signupModel.obscurePasswordConfirm,
-=======
                             !controller.signupModel.obscurePasswordConfirm,
->>>>>>> upstream/main
                         decoration: InputDecoration(
                           hintText: '비밀번호를 입력해 주세요',
                           hintStyle: const TextStyle(color: Colors.grey),
@@ -285,11 +277,7 @@ class SignupSecondPage extends StatelessWidget {
                                   color: Colors.grey,
                                 ),
                                 onPressed:
-<<<<<<< HEAD
-                                controller.togglePasswordConfirmVisibility,
-=======
                                     controller.togglePasswordConfirmVisibility,
->>>>>>> upstream/main
                               ),
                             ],
                           ),
@@ -335,20 +323,12 @@ class SignupSecondPage extends StatelessWidget {
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(8),
                                   borderSide:
-<<<<<<< HEAD
-                                  const BorderSide(color: Colors.grey),
-=======
                                       const BorderSide(color: Colors.grey),
->>>>>>> upstream/main
                                 ),
                                 focusedBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(8),
                                   borderSide:
-<<<<<<< HEAD
-                                  const BorderSide(color: Colors.blue),
-=======
                                       const BorderSide(color: Colors.blue),
->>>>>>> upstream/main
                                 ),
                                 contentPadding: const EdgeInsets.symmetric(
                                     horizontal: 12, vertical: 14),
@@ -424,15 +404,9 @@ class SignupSecondPage extends StatelessWidget {
                         : null,
                     style: ElevatedButton.styleFrom(
                       backgroundColor:
-<<<<<<< HEAD
-                      controller.signupModel.isSecondNextButtonEnabled
-                          ? Colors.blue
-                          : Colors.grey[400],
-=======
                           controller.signupModel.isSecondNextButtonEnabled
                               ? Colors.blue
                               : Colors.grey[400],
->>>>>>> upstream/main
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(5),
                       ),
@@ -454,8 +428,4 @@ class SignupSecondPage extends StatelessWidget {
       ),
     );
   }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> upstream/main

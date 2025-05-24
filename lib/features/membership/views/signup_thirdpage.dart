@@ -214,11 +214,7 @@ class _SignupThirdPageState extends State<SignupThirdPage> {
               borderSide: const BorderSide(color: Colors.blue),
             ),
             contentPadding:
-<<<<<<< HEAD
-            const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
-=======
                 const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
->>>>>>> upstream/main
           ),
           keyboardType: TextInputType.text,
           textInputAction: TextInputAction.next,
@@ -278,11 +274,7 @@ class _SignupThirdPageState extends State<SignupThirdPage> {
                     borderSide: const BorderSide(color: Colors.blue),
                   ),
                   contentPadding:
-<<<<<<< HEAD
-                  const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
-=======
                       const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
->>>>>>> upstream/main
                 ),
                 keyboardType: TextInputType.emailAddress,
                 textInputAction: TextInputAction.next,
@@ -332,11 +324,7 @@ class _SignupThirdPageState extends State<SignupThirdPage> {
                       return DropdownMenuItem<String>(
                         value: value,
                         child:
-<<<<<<< HEAD
-                        Text(value, style: const TextStyle(fontSize: 14)),
-=======
                             Text(value, style: const TextStyle(fontSize: 14)),
->>>>>>> upstream/main
                       );
                     }).toList(),
                   ),
@@ -366,11 +354,7 @@ class _SignupThirdPageState extends State<SignupThirdPage> {
                   borderSide: const BorderSide(color: Colors.blue),
                 ),
                 contentPadding:
-<<<<<<< HEAD
-                const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
-=======
                     const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
->>>>>>> upstream/main
               ),
               keyboardType: TextInputType.text,
               textInputAction: TextInputAction.next,
@@ -435,11 +419,7 @@ class _SignupThirdPageState extends State<SignupThirdPage> {
                     borderSide: const BorderSide(color: Colors.blue),
                   ),
                   contentPadding:
-<<<<<<< HEAD
-                  const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
-=======
                       const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
->>>>>>> upstream/main
                 ),
                 textInputAction: TextInputAction.next,
                 enableInteractiveSelection: true,
@@ -463,11 +443,7 @@ class _SignupThirdPageState extends State<SignupThirdPage> {
                     borderSide: const BorderSide(color: Colors.blue),
                   ),
                   contentPadding:
-<<<<<<< HEAD
-                  const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
-=======
                       const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
->>>>>>> upstream/main
                 ),
                 textInputAction: TextInputAction.next,
                 enableInteractiveSelection: true,
@@ -566,11 +542,7 @@ class _SignupThirdPageState extends State<SignupThirdPage> {
                   style: TextStyle(
                     fontSize: 14,
                     color:
-<<<<<<< HEAD
-                    selectedPosition == '전체' ? Colors.grey : Colors.black,
-=======
                         selectedPosition == '전체' ? Colors.grey : Colors.black,
->>>>>>> upstream/main
                   ),
                 ),
                 const Icon(Icons.keyboard_arrow_down, size: 24),
@@ -613,11 +585,7 @@ class _SignupThirdPageState extends State<SignupThirdPage> {
                 // 상단 헤더
                 Padding(
                   padding:
-<<<<<<< HEAD
-                  const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-=======
                       const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
->>>>>>> upstream/main
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -711,8 +679,4 @@ Widget _buildDivider() {
     color: Colors.blue,
     width: double.infinity,
   );
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> upstream/main

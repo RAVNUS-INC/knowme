@@ -128,11 +128,7 @@ class SignupThirdController extends GetxController {
   // 이메일 형식 유효성 검사
   bool _isValidEmail() {
     final emailRegex =
-<<<<<<< HEAD
-    RegExp(r'^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$');
-=======
         RegExp(r'^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$');
->>>>>>> upstream/main
     final fullEmail = '${model.emailPrefix}@${model.emailDomain}';
     return emailRegex.hasMatch(fullEmail);
   }
@@ -169,8 +165,4 @@ class SignupThirdController extends GetxController {
       }
     }
   }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> upstream/main

@@ -4,8 +4,4 @@ class AiAnalysisResultController extends GetxController {
   void goToRecommendation() {
     Get.offAllNamed('/recommendation');
   }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> upstream/main

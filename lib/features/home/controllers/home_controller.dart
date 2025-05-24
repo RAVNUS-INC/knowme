@@ -79,8 +79,4 @@ class HomeController extends GetxController {
   void goToAiAnalysis() {
     Get.toNamed(AppRoutes.aiAnalysis); // ✅ binding 적용됨
   }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> upstream/main

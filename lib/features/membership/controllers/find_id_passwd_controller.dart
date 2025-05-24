@@ -92,8 +92,4 @@ class FindIdPasswdController extends GetxController {
       });
     }
   }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> upstream/main

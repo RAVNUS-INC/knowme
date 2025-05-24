@@ -11,17 +11,10 @@ class SignupSecondController extends GetxController {
   final TextEditingController idController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController passwordConfirmController =
-<<<<<<< HEAD
-  TextEditingController();
-  final TextEditingController phoneController = TextEditingController();
-  final TextEditingController verificationCodeController =
-  TextEditingController();
-=======
       TextEditingController();
   final TextEditingController phoneController = TextEditingController();
   final TextEditingController verificationCodeController =
       TextEditingController();
->>>>>>> upstream/main
 
   @override
   void onInit() {
@@ -135,8 +128,4 @@ class SignupSecondController extends GetxController {
       });
     }
   }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> upstream/main

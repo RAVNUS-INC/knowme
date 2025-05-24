@@ -1,28 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../shared/widgets/base_scaffold.dart';
-<<<<<<< HEAD
+import 'package:knowme_frontend/shared/widgets/base_scaffold.dart';
 import 'package:knowme_frontend/features/ai_analysis/controllers/ai_analysis_result_controller.dart';
-=======
-import '../controllers/ai_analysis_result_controller.dart';
->>>>>>> upstream/main
 
 // 추후 하드코딩된 텍스트들은 mvc구조에 맞게 데이터로 대체 예정
 class AiAnalysisResultScreen extends StatelessWidget {
   const AiAnalysisResultScreen({super.key});
 
   Widget get _verticalDivider => Container(
-<<<<<<< HEAD
     width: 1,
     height: 60,
     color: const Color(0xFFE5E5E5),
   );
-=======
-        width: 1,
-        height: 60,
-        color: const Color(0xFFE5E5E5),
-      );
->>>>>>> upstream/main
 
   Widget _section(String title, String content) {
     return Column(
@@ -184,11 +173,7 @@ class AiAnalysisResultScreen extends StatelessWidget {
                   ),
                   TextSpan(
                     text:
-<<<<<<< HEAD
                     ' 등을\n중심으로 판단해요.\n\n이런 기준에서 보완점을 조금만 더 채워넣으면 강한 인상을 줄 수 있습니다!',
-=======
-                        ' 등을\n중심으로 판단해요.\n\n이런 기준에서 보완점을 조금만 더 채워넣으면 강한 인상을 줄 수 있습니다!',
->>>>>>> upstream/main
                     style: TextStyle(
                       color: Color(0xFF454C53),
                       fontSize: 14,
@@ -299,8 +284,4 @@ class _RecommendationButton extends StatelessWidget {
       ),
     );
   }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> upstream/main

@@ -98,8 +98,4 @@ class LoginController extends GetxController {
       snackPosition: SnackPosition.BOTTOM,
     );
   }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> upstream/main

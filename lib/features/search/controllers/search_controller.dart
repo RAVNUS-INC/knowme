@@ -40,8 +40,4 @@ class SearchController extends GetxController {
     searchController.dispose();
     super.onClose();
   }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> upstream/main

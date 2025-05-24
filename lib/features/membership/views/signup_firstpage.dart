@@ -118,11 +118,7 @@ class _SignupFirstPageState extends State<SignupFirstPage> {
                             child: const Text(
                               '보기',
                               style:
-<<<<<<< HEAD
-                              TextStyle(fontSize: 14, color: Colors.blue),
-=======
                                   TextStyle(fontSize: 14, color: Colors.blue),
->>>>>>> upstream/main
                             ),
                           ),
                         ],
@@ -146,11 +142,7 @@ class _SignupFirstPageState extends State<SignupFirstPage> {
                             child: const Text(
                               '보기',
                               style:
-<<<<<<< HEAD
-                              TextStyle(fontSize: 14, color: Colors.blue),
-=======
                                   TextStyle(fontSize: 14, color: Colors.blue),
->>>>>>> upstream/main
                             ),
                           ),
                         ],
@@ -174,11 +166,7 @@ class _SignupFirstPageState extends State<SignupFirstPage> {
                             child: const Text(
                               '보기',
                               style:
-<<<<<<< HEAD
-                              TextStyle(fontSize: 14, color: Colors.blue),
-=======
                                   TextStyle(fontSize: 14, color: Colors.blue),
->>>>>>> upstream/main
                             ),
                           ),
                         ],
@@ -206,15 +194,9 @@ class _SignupFirstPageState extends State<SignupFirstPage> {
                       : null,
                   style: ElevatedButton.styleFrom(
                     backgroundColor:
-<<<<<<< HEAD
-                    controller.signupModel.isFirstNextButtonEnabled
-                        ? Colors.blue
-                        : Colors.grey,
-=======
                         controller.signupModel.isFirstNextButtonEnabled
                             ? Colors.blue
                             : Colors.grey,
->>>>>>> upstream/main
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(5),
                     ),
@@ -235,8 +217,4 @@ class _SignupFirstPageState extends State<SignupFirstPage> {
       ),
     );
   }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> upstream/main
