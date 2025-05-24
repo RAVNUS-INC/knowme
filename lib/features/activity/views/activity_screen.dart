@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:intl/intl.dart';
-import 'package:knowme_frontend/routes/routes.dart';
 import 'package:knowme_frontend/shared/widgets/base_scaffold.dart';
 
 const double _side = 20;
@@ -24,8 +21,6 @@ class _ActivityScreenState extends State<ActivityScreen> {
     'TypeScript',
     'API\\u연동',
   ];
-
-  int _navIdx = 1;
 
   final _projects = const [
     Project(
@@ -109,24 +104,24 @@ class _ActivityScreenState extends State<ActivityScreen> {
                         padding: const EdgeInsets.symmetric(
                             horizontal: 14, vertical: 6),
                         decoration: BoxDecoration(
-                          color: sel ? _c.primaryBlue : _c.gray100,
+                          color: sel ? _Color.primaryBlue : _Color.gray100,
                           borderRadius: BorderRadius.circular(18),
                           border: Border.all(
-                            color: sel ? _c.primaryBlue : _c.gray200,
+                            color: sel ? _Color.primaryBlue : _Color.gray200,
                           ),
                         ),
                         child: Text(
                           tag,
                           style: GoogleFonts.notoSansKr(
                             fontSize: 13,
-                            color: sel ? Colors.white : _c.gray700,
+                            color: sel ? Colors.white : _Color.gray700,
                             fontWeight:
                                 sel ? FontWeight.w600 : FontWeight.normal,
                           ),
                         ),
                       ),
                     );
-                  }).toList(),
+                  })
                 ],
               ),
             ),
@@ -184,7 +179,7 @@ class _ActivityScreenState extends State<ActivityScreen> {
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(12),
-                  border: Border.all(color: _c.gray200),
+                  border: Border.all(color: _Color.gray200),
                 ),
                 padding: const EdgeInsets.all(16),
                 child: Column(
@@ -195,13 +190,13 @@ class _ActivityScreenState extends State<ActivityScreen> {
                       style: GoogleFonts.notoSansKr(
                         fontSize: 16,
                         fontWeight: FontWeight.w700,
-                        color: _c.gray700,
+                        color: _Color.gray700,
                       ),
                     ),
                     Container(
                       width: double.infinity,
                       height: 0.8,
-                      color: _c.gray200,
+                      color: _Color.gray200,
                     ),
                     const SizedBox(height: 4),
                     Text(
@@ -222,7 +217,7 @@ class _ActivityScreenState extends State<ActivityScreen> {
                                   t,
                                   style: GoogleFonts.notoSansKr(fontSize: 12),
                                 ),
-                                backgroundColor: _c.gray100,
+                                backgroundColor: _Color.gray100,
                                 visualDensity: VisualDensity.compact,
                                 side: BorderSide.none,
                               ))
@@ -233,7 +228,7 @@ class _ActivityScreenState extends State<ActivityScreen> {
                       p.date,
                       style: GoogleFonts.notoSansKr(
                         fontSize: 12,
-                        color: _c.gray400,
+                        color: _Color.gray400,
                       ),
                     ),
                   ],
@@ -259,15 +254,11 @@ class Project {
   });
 }
 
-class _c {
+class _Color {
   static const primaryBlue = Color(0xFF0066FF);
-  static const sky = Color(0xFF5FA8FF);
-  static const gray50 = Color(0xFFF8FAFC);
   static const gray100 = Color(0xFFF1F5F9);
   static const gray200 = Color(0xFFE2E8F0);
-  static const gray300 = Color(0xFFDDE3EA);
   static const gray400 = Color(0xFF94A3B8);
-  static const gray500 = Color(0xFF64748B);
   static const gray700 = Color(0xFF334155);
 }
 
@@ -321,7 +312,7 @@ class ActivityDetailScreen extends StatelessWidget {
                         children: project.tags
                             .map((tag) => Chip(
                                   label: Text(tag),
-                                  backgroundColor: _c.gray100,
+                                  backgroundColor: _Color.gray100,
                                   side: BorderSide.none,
                                 ))
                             .toList(),
@@ -380,7 +371,7 @@ class ActivityDetailScreen extends StatelessWidget {
 }
 
 ///팝업 위젯
-Future<void> _showDeleteDialog(BuildContext context, Project project) async {
+Future<bool> _showDeleteDialog(BuildContext context, Project project) async {
   final confirmed = await showDialog<bool>(
     context: context,
     builder: (_) => AlertDialog(
@@ -388,9 +379,9 @@ Future<void> _showDeleteDialog(BuildContext context, Project project) async {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       contentPadding: const EdgeInsets.fromLTRB(24, 28, 24, 12),
       actionsPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-      content: Column(
+      content: const Column(
         mainAxisSize: MainAxisSize.min,
-        children: const [
+        children: [
           Text(
             '활동을 삭제할까요?',
             style: TextStyle(
@@ -428,7 +419,7 @@ Future<void> _showDeleteDialog(BuildContext context, Project project) async {
           height: 40,
           child: ElevatedButton(
             style: ElevatedButton.styleFrom(
-              backgroundColor: Color(0xFF0066FF),
+              backgroundColor: const Color(0xFF0066FF),
             ),
             onPressed: () => Navigator.pop(context, false),
             child: const Text('취소', style: TextStyle(color: Colors.white)),
@@ -438,14 +429,12 @@ Future<void> _showDeleteDialog(BuildContext context, Project project) async {
     ),
   );
 
-  if (confirmed == true) {
-    Navigator.pop(context, project); // 리스트에서 삭제
-  }
+  return confirmed ?? false;
 }
 
 class _MenuPopup extends StatelessWidget {
   final Project project;
-  const _MenuPopup({super.key, required this.project});
+  const _MenuPopup({required this.project});
 
   @override
   Widget build(BuildContext context) {
@@ -733,48 +722,6 @@ class _AddProjectPageState extends State<AddProjectPage> {
       ),
     );
   }
-
-  Widget _section(String t) => Text(
-        t,
-        style: const TextStyle(
-            fontSize: 15,
-            fontWeight: FontWeight.w700,
-            color: Colors.blueAccent),
-      );
-
-  Widget _outlined(TextEditingController ctl, String hint,
-          {int maxLines = 1, EdgeInsets? contentPadding}) =>
-      TextField(
-        controller: ctl,
-        maxLines: maxLines,
-        decoration: InputDecoration(
-          hintText: hint,
-          isDense: true,
-          contentPadding: contentPadding ??
-              const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(6)),
-        ),
-      );
-
-  Widget _divider() => const Divider(height: 1, color: Colors.grey);
-
-  Widget _linkRow(String label, {IconData icon = Icons.link_outlined}) => Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Row(
-            children: [
-              Icon(icon, color: Colors.blueAccent),
-              const SizedBox(width: 8),
-              Text(label),
-            ],
-          ),
-          IconButton(
-            icon:
-                const Icon(Icons.add_circle_outline, color: Colors.blueAccent),
-            onPressed: () {},
-          ),
-        ],
-      );
 }
 
 ///활동 추가 페이지
@@ -932,7 +879,7 @@ class ActivityAddScreen extends StatelessWidget {
                   Expanded(
                     child: ElevatedButton(
                       onPressed: () {
-                        Navigator.of(context)..pop(); // 다이얼로그 닫기
+                        Navigator.of(context).pop(); // 다이얼로그 닫기
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: const Color(0xFF0066FF),
@@ -960,63 +907,3 @@ class ActivityAddScreen extends StatelessWidget {
     );
   }
 }
-
-Widget _sectionTitle(String title) => Padding(
-      padding: const EdgeInsets.only(bottom: 8),
-      child: Text(
-        title,
-        style: const TextStyle(
-            fontSize: 16, fontWeight: FontWeight.bold, color: Colors.blue),
-      ),
-    );
-
-Widget _textField(String hint) => TextField(
-      decoration: InputDecoration(
-        hintText: hint,
-        border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
-        isDense: true,
-        contentPadding:
-            const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
-      ),
-    );
-
-Widget _iconRow(IconData icon) => Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Icon(icon, size: 24, color: Colors.blue),
-        IconButton(
-          icon: const Icon(Icons.add, color: Colors.blue),
-          onPressed: () {},
-        )
-      ],
-    );
-
-Widget _blueButton(String label) => SizedBox(
-      width: double.infinity,
-      child: ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          backgroundColor: Colors.blue,
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-          padding: const EdgeInsets.symmetric(vertical: 16),
-        ),
-        onPressed: () {},
-        child: Text(label,
-            style: const TextStyle(fontSize: 16, color: Colors.white)),
-      ),
-    );
-
-Widget _grayButton(String label, VoidCallback onTap) => SizedBox(
-      width: double.infinity,
-      child: OutlinedButton(
-        style: OutlinedButton.styleFrom(
-          backgroundColor: Colors.grey[300],
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-          padding: const EdgeInsets.symmetric(vertical: 16),
-        ),
-        onPressed: onTap,
-        child: Text(label,
-            style: const TextStyle(fontSize: 16, color: Colors.black)),
-      ),
-    );

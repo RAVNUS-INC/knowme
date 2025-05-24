@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:knowme_frontend/routes/routes.dart'; // ✅ AppRoutes 사용
-import 'package:knowme_frontend/routes/routes.dart';
 
 class BaseScaffold extends StatelessWidget {
   final Widget body;
@@ -87,7 +86,7 @@ class BaseScaffold extends StatelessWidget {
                       : 'assets/images/bell.png',
                   onTap: () {
                     Get.toNamed(AppRoutes.notification);
-                    print('Bell tapped');
+                    debugPrint('Bell tapped');
                   },
                 ),
                 const SizedBox(width: 16),
@@ -97,7 +96,7 @@ class BaseScaffold extends StatelessWidget {
                       : 'assets/images/user.png',
                   onTap: () {
                     Get.toNamed(AppRoutes.profile);
-                    print('Profile tapped');
+                    debugPrint('Profile tapped');
                   },
                 ),
               ],
@@ -155,9 +154,10 @@ class BaseScaffold extends StatelessWidget {
             activeColor: activeColor,
             inactiveColor: inactiveColor,
             onTap: () {
-              if (currentIndex != 2)
+              if (currentIndex != 2) {
                 Get.offAllNamed(AppRoutes.recommendation); // ✅
-            },
+              }
+            }
           ),
           _BottomNavItem(
             iconPath: 'assets/images/AI분석.png',

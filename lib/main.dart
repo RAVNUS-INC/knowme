@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'features/activity/views/activity_screen.dart';
-import 'features/membership/views/profile_screen.dart';
-import 'features/home/views/notification_screen.dart';
 import 'routes/routes.dart';
 import 'package:get/get.dart';
 

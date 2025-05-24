@@ -31,10 +31,10 @@ class ProfileScreen extends StatelessWidget {
           Center(
             child: Column(
               children: [
-                CircleAvatar(
+                const CircleAvatar(
                   radius: 62,
                   backgroundColor: Colors.transparent,
-                  child: const CircleAvatar(
+                  child: CircleAvatar(
                     radius: 58,
                     backgroundImage: AssetImage('images/silhouette.png'),
                   ),
@@ -125,7 +125,7 @@ class ProfileScreen extends StatelessWidget {
                                   builder: (_) => const MembershipScreen()),
                             );
                           },
-                          child: Text('멤버십 구독',
+                          child: const Text('멤버십 구독',
                               style: TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.w600,
@@ -155,19 +155,19 @@ class ProfileScreen extends StatelessWidget {
           const SizedBox(height: 20),
 
           // 푸터 텍스트
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text('고객지원',
+                 Text('고객지원',
                     style:
                         TextStyle(fontWeight: FontWeight.bold, fontSize: 13)),
-                const SizedBox(height: 4),
-                const Text('tel: 02-000-0000', style: TextStyle(fontSize: 12)),
-                const Text('email : help@knowme.com',
+                SizedBox(height: 4),
+                Text('tel: 02-000-0000', style: TextStyle(fontSize: 12)),
+                Text('email : help@knowme.com',
                     style: TextStyle(fontSize: 12)),
-                const Text('주소', style: TextStyle(fontSize: 12)),
+                Text('주소', style: TextStyle(fontSize: 12)),
               ],
             ),
           ),
@@ -178,14 +178,14 @@ class ProfileScreen extends StatelessWidget {
           Container(
             width: double.infinity,
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               gradient: LinearGradient(
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
                 colors: [
                   Colors.transparent,
-                  Colors.blueAccent.withOpacity(0.1),
-                  Colors.blueAccent.withOpacity(0.3),
+                  Colors.blueAccent,
+                  Colors.blueAccent,
                 ],
               ),
             ),
@@ -263,11 +263,11 @@ class MembershipScreen extends StatelessWidget {
             const SizedBox(height: 16),
 
             // ── '프리미엄 멤버십' 텍스트 ──
-            Padding(
-              padding: const EdgeInsets.fromLTRB(30, 0, 20, 0),
+            const Padding(
+              padding: EdgeInsets.fromLTRB(30, 0, 20, 0),
               child: Align(
                 alignment: Alignment.centerLeft,
-                child: const Text(
+                child: Text(
                   '프리미엄 멤버십',
                   style: TextStyle(
                     fontSize: 24,
@@ -294,7 +294,7 @@ class MembershipScreen extends StatelessWidget {
                         child: Container(
                           decoration: BoxDecoration(
                             border:
-                                Border.all(color: Color(0xFF0066FF), width: 2),
+                                Border.all(color: const Color(0xFF0066FF), width: 2),
                             borderRadius: BorderRadius.circular(8),
                           ),
                           child: Stack(
@@ -307,9 +307,9 @@ class MembershipScreen extends StatelessWidget {
                                 child: Container(
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 8, vertical: 4),
-                                  decoration: BoxDecoration(
+                                  decoration: const BoxDecoration(
                                     color: Color(0xFF0066FF),
-                                    borderRadius: const BorderRadius.only(
+                                    borderRadius: BorderRadius.only(
                                       bottomRight: Radius.circular(8),
                                       topLeft: Radius.circular(8),
                                     ),
@@ -330,13 +330,13 @@ class MembershipScreen extends StatelessWidget {
                                   color: Color(0xFF0066FF),
                                 ),
                               ),
-                              Padding(
-                                padding: const EdgeInsets.symmetric(
+                              const Padding(
+                                padding: EdgeInsets.symmetric(
                                     horizontal: 16, vertical: 40),
                                 child: Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
-                                  children: const [
+                                  children: [
                                     Text('\u00A0\u00A0\u00A012개월',
                                         style: TextStyle(
                                             fontSize: 18,
@@ -344,7 +344,7 @@ class MembershipScreen extends StatelessWidget {
                                     Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.end,
-                                      children: const [
+                                      children: [
                                         Text(
                                           '70,800원',
                                           style: TextStyle(
@@ -402,12 +402,12 @@ class MembershipScreen extends StatelessWidget {
                                 Border.all(color: Colors.grey[300]!, width: 2),
                             borderRadius: BorderRadius.circular(8),
                           ),
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(
+                          child: const Padding(
+                            padding: EdgeInsets.symmetric(
                                 horizontal: 16, vertical: 40),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: const [
+                              children: [
                                 Text('\u00A0\u00A0\u00A01개월',
                                     style: TextStyle(
                                         fontSize: 18,

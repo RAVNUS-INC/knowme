@@ -120,25 +120,25 @@ class AiAnalysisResultScreen extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                _buildBar('실전형 주제', Color(0xFF0068E5), 240),
+                _buildBar('실전형 주제', const Color(0xFF0068E5), 240),
                 const SizedBox(height: 8),
-                _buildBar('실무 적용력', Color(0xFF0068E5), 200),
+                _buildBar('실무 적용력', const Color(0xFF0068E5), 200),
                 const SizedBox(height: 8),
-                _buildBar('UX 중심 구성', Color(0xFF0068E5), 160),
+                _buildBar('UX 중심 구성', const Color(0xFF0068E5), 160),
                 const SizedBox(height: 32),
                 Align(
                   alignment: Alignment.centerRight,
-                  child: _buildBar('실무 협업 역량', Color(0xCDD0CFC7), 200),
+                  child: _buildBar('실무 협업 역량', const Color(0xCDD0CFC7), 200),
                 ),
                 const SizedBox(height: 8),
                 Align(
                   alignment: Alignment.centerRight,
-                  child: _buildBar('운영 관점 역량', Color(0xCDD0CFC7), 160),
+                  child: _buildBar('운영 관점 역량', const Color(0xCDD0CFC7), 160),
                 ),
                 const SizedBox(height: 8),
                 Align(
                   alignment: Alignment.centerRight,
-                  child: _buildBar('전문성', Color(0xCDD0CFC7), 120),
+                  child: _buildBar('전문성', const Color(0xCDD0CFC7), 120),
                 ),
               ],
             ),
