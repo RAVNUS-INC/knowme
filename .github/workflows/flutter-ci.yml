@@ -30,7 +30,12 @@ jobs:
         run: flutter analyze
 
       - name: Run tests
-        run: flutter test
+        run: |
+          if [ -d "test" ]; then
+            flutter test;
+          else
+            echo "No tests directory found, skipping tests.";
+          fi
 
   build_android:
     name: Build Android APK
