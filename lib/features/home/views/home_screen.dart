@@ -160,12 +160,12 @@ class HomeScreen extends StatelessWidget {
             ),
             child: Row(
               children: [
-                Expanded(
+                const Expanded(
                   child: Padding(
-                    padding: const EdgeInsets.only(top: 16),
+                    padding: EdgeInsets.only(top: 16),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
-                      children: const [
+                      children: [
                         Text(
                           '이한양 님의 직무 적합도',
                           textAlign: TextAlign.center,
@@ -186,12 +186,12 @@ class HomeScreen extends StatelessWidget {
                   margin: const EdgeInsets.symmetric(vertical: 24),
                   color: const Color(0xFFE5E5E5),
                 ),
-                Expanded(
+                const Expanded(
                   child: Padding(
-                    padding: const EdgeInsets.only(top: 16),
+                    padding: EdgeInsets.only(top: 16),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
-                      children: const [
+                      children: [
                         Text(
                           '추천 활동',
                           textAlign: TextAlign.center,

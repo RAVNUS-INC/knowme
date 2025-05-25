@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../controllers/ai_analysis_controller.dart';
+import 'package:knowme/features/ai_analysis/controllers/ai_analysis_controller.dart';
 
 class AiAnalysisScreen extends StatefulWidget {
   const AiAnalysisScreen({super.key});
@@ -73,7 +73,7 @@ class _AiAnalysisScreenState extends State<AiAnalysisScreen>
             const SizedBox(height: 30),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 40),
-              child: Container(height: 1, color: Color(0xFFE5E5E5)),
+              child: Container(height: 1, color: const Color(0xFFE5E5E5)),
             ),
             const SizedBox(height: 120),
             SlideTransition(
